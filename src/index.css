@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "NDOT45";
+  src: url("./assets/ndot-45.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --color-brand-red: #ea0000;
+  --font-nothing: "NDOT45", sans-serif;
+}
+
+:root {
+  background-color: #000000;
+  color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html { 
+  scroll-behavior: smooth; 
+}
