@@ -15,6 +15,21 @@ const LinkedinIcon = () => <svg width="20" height="20" viewBox="0 0 24 24" fill=
 const SendIcon = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" strokeLinejoin="miter"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>;
 const BadgeIcon = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" strokeLinejoin="miter"><path d="M12 15v5s-2.5-1.5-5 0v-5"></path><circle cx="12" cy="9" r="5"></circle></svg>;
 
+// --- CUSTOM TS LOGO SVG ---
+const TSLogo = () => (
+  <svg width="40" height="40" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+    {/* T Component */}
+    <rect x="12" y="16" width="40" height="6" fill="currentColor" />
+    <rect x="29" y="16" width="6" height="32" fill="currentColor" />
+    {/* S Component (Abstracted) */}
+    <rect x="42" y="28" width="6" height="6" fill="currentColor" />
+    <rect x="16" y="36" width="6" height="6" fill="currentColor" />
+    <rect x="16" y="42" width="32" height="6" fill="currentColor" />
+    {/* Red Accent Dot */}
+    <circle cx="32" cy="32" r="3" fill="#ea0000" />
+  </svg>
+);
+
 // --- ENHANCED MAGNETIC CANVAS (SSR SAFE) ---
 const CanvasDotGrid = ({ isDark }) => {
   const canvasRef = useRef(null);
@@ -213,9 +228,13 @@ const App = () => {
         {/* --- NAVBAR --- */}
         <nav className={`fixed top-0 left-0 w-full z-50 transition-colors duration-500 backdrop-blur-xl border-b ${isDark ? 'bg-black/90 border-zinc-800' : 'bg-white/90 border-zinc-200'}`}>
           <div className="max-w-[1200px] mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
-            <span className="font-nothing text-3xl tracking-widest mt-1">TEJAS</span>
             
-            <div className={`hidden md:flex gap-10 text-[10px] font-bold tracking-[0.2em] uppercase ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
+            {/* Custom SVG Brand Logo */}
+            <div className={`transition-colors ${isDark ? 'text-white' : 'text-black'}`}>
+              <TSLogo />
+            </div>
+            
+            <div className={`hidden md:flex gap-8 text-[10px] font-bold tracking-[0.2em] uppercase ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
               <a href="#about" className={`hover:${isDark ? 'text-white' : 'text-black'} transition-colors`}>About</a>
               <a href="#certs" className={`hover:${isDark ? 'text-white' : 'text-black'} transition-colors`}>Certs</a>
               <a href="#skills" className={`hover:${isDark ? 'text-white' : 'text-black'} transition-colors`}>Skills</a>
@@ -336,7 +355,7 @@ const App = () => {
           </div>
         </section>
 
-        {/* --- ABOUT SECTION (GOKUL STYLE REBUILD) --- */}
+        {/* --- ABOUT SECTION --- */}
         <FadeSection id="about" isDark={isDark}>
           <div className="flex flex-col items-center mb-20 text-center">
             <h2 className="font-nothing text-4xl md:text-6xl tracking-widest uppercase text-current mb-4">ABOUT ME</h2>
@@ -510,7 +529,7 @@ const App = () => {
           </div>
         </FadeSection>
 
-        {/* --- INTERACTIVE PROJECTS SECTION --- */}
+        {/* --- PROJECTS --- */}
         <FadeSection id="projects" isDark={isDark}>
           <div className="flex flex-col items-center mb-20 text-center">
             <h2 className="font-nothing text-4xl md:text-6xl tracking-widest uppercase text-current mb-4">MODULES</h2>
