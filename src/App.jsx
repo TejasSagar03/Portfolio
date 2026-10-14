@@ -376,10 +376,10 @@ const App = () => {
               </div>
             </div>
 
-            {/* Right Column: Bio & Education (Lean Version) */}
+            {/* Right Column: Bio & Education */}
             <div className="w-full lg:w-7/12 flex flex-col">
               <p className={`text-sm md:text-base font-serif leading-relaxed mb-10 ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
-                I aim to contribute to impactful projects, collaborate effectively within teams, and expand my capabilities through continuous learning. Currently pursuing my Bachelor of Computer Applications, focusing heavily on modern web and mobile architectures.
+                I aim to contribute to impactful projects, collaborate effectively within teams, and expand my capabilities through continuous learning. Currently pursuing my Master of Computer Applications, focusing heavily on modern web and mobile architectures.
               </p>
               
               <div className={`w-10 h-[1px] mb-10 ${isDark ? 'bg-zinc-700' : 'bg-zinc-300'}`} />
@@ -388,6 +388,11 @@ const App = () => {
                 <h4 className={`font-mono text-[10px] font-bold tracking-[0.3em] uppercase text-[#ea0000] mb-6`}>EDUCATION</h4>
                 
                 <div className="flex flex-col gap-6">
+                  <div className="flex flex-col">
+                    <p className={`font-mono text-[9px] mb-1 uppercase tracking-widest ${isDark ? 'text-zinc-500' : 'text-zinc-400'}`}>2026 - 2028</p>
+                    <h5 className="font-serif text-lg md:text-xl leading-snug mb-1">BMS Institute of Technology and Management</h5>
+                    <p className="font-mono text-[9px] tracking-widest uppercase opacity-70">MCA Degree</p>
+                  </div>
                   <div className="flex flex-col">
                     <p className={`font-mono text-[9px] mb-1 uppercase tracking-widest ${isDark ? 'text-zinc-500' : 'text-zinc-400'}`}>2023 - 2026</p>
                     <h5 className="font-serif text-lg md:text-xl leading-snug mb-1">Dr. NSAM First Grade College</h5>
