@@ -400,12 +400,12 @@ const App = () => {
                   </div>
                   <div className="flex flex-col">
                     <p className={`font-mono text-[9px] mb-1 uppercase tracking-widest ${isDark ? 'text-zinc-500' : 'text-zinc-400'}`}>2021 - 2023</p>
-                    <h5 className="font-serif text-lg md:text-xl leading-snug mb-1">Dr. NSAM Pre University</h5>
+                    <h5 className="font-serif text-lg md:text-xl leading-snug mb-1">Dr. NSAM Pre University College</h5>
                     <p className="font-mono text-[9px] tracking-widest uppercase opacity-70">PCMC - PUC</p>
                   </div>
                   <div className="flex flex-col">
                     <p className={`font-mono text-[9px] mb-1 uppercase tracking-widest ${isDark ? 'text-zinc-500' : 'text-zinc-400'}`}>2020 - 2021</p>
-                    <h5 className="font-serif text-lg md:text-xl leading-snug mb-1">Sri Devaraj Urs International</h5>
+                    <h5 className="font-serif text-lg md:text-xl leading-snug mb-1">Sri Devaraj Urs International Residential School</h5>
                     <p className="font-mono text-[9px] tracking-widest uppercase opacity-70">SSLC</p>
                   </div>
                 </div>
