@@ -161,14 +161,14 @@ const BootSequence = ({ setBooted }) => {
   );
 };
 
-// --- ANIMATED SECTION COMPONENT (WITH SCROLL OFFSET FOR PILL NAV) ---
+// --- ANIMATED SECTION COMPONENT (RE-TRIGGERS ON SCROLL UP & DOWN) ---
 const FadeSection = ({ children, id, className, isDark }) => (
   <section id={id} className={`scroll-mt-24 py-24 px-6 border-b ${isDark ? 'border-zinc-800' : 'border-zinc-200'} ${className || ''}`}>
     <motion.div 
-      initial={{ opacity: 0, y: 28 }}
+      initial={{ opacity: 0, y: 36 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.12 }}
-      transition={OS5_SPRING}
+      viewport={{ once: false, amount: 0.12 }}
+      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
       className="max-w-[1100px] mx-auto w-full"
     >
       {children}
