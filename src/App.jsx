@@ -238,7 +238,7 @@ const App = () => {
     const fg = isDark ? '#ffffff' : '#000000';
     document.documentElement.style.backgroundColor = bg;
     document.documentElement.style.color = fg;
-    document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';
+    document.documentElement.style.colorScheme = isDark ? 'only dark' : 'only light';
     document.body.style.backgroundColor = bg;
     document.body.style.color = fg;
   }, [isDark]);
