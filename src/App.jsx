@@ -30,7 +30,7 @@ const MicroGraphicIcon = () => (
 // --- OS 5.0 INTERRUPTIBLE SPRING CONFIG ---
 const OS5_SPRING = { type: "spring", stiffness: 450, damping: 28, mass: 0.8 };
 
-// --- ENHANCED MAGNETIC CANVAS (WITH ADAPTIVE HOVER COLOR) ---
+// --- ENHANCED MAGNETIC CANVAS (MOUSE + TOUCH SUPPORT) ---
 const CanvasDotGrid = ({ isDark, hoverColorRGB }) => {
   const canvasRef = useRef(null);
   
@@ -47,7 +47,21 @@ const CanvasDotGrid = ({ isDark, hoverColorRGB }) => {
     
     let mouse = { x: -1000, y: -1000 };
     const handleMouseMove = (e) => { mouse.x = e.clientX; mouse.y = e.clientY; };
+    const handleTouchMove = (e) => {
+      if (e.touches && e.touches.length > 0) {
+        mouse.x = e.touches[0].clientX;
+        mouse.y = e.touches[0].clientY;
+      }
+    };
+    const handleTouchEnd = () => {
+      mouse.x = -1000;
+      mouse.y = -1000;
+    };
+
     window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('touchstart', handleTouchMove, { passive: true });
+    window.addEventListener('touchmove', handleTouchMove, { passive: true });
+    window.addEventListener('touchend', handleTouchEnd);
     
     let dots = [];
     const spacing = 40; 
@@ -118,6 +132,9 @@ const CanvasDotGrid = ({ isDark, hoverColorRGB }) => {
     
     return () => { 
       window.removeEventListener('mousemove', handleMouseMove); 
+      window.removeEventListener('touchstart', handleTouchMove);
+      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('touchend', handleTouchEnd);
       window.removeEventListener('resize', handleResize); 
       cancelAnimationFrame(animationFrameId); 
     };
@@ -202,9 +219,9 @@ const SocialLink = ({ href, children, isDark, isMail }) => (
 );
 
 const NAV_ITEMS = [
-  { id: 'about', label: 'About', dotColor: '#22c55e' },      // OS 5.0 Emerald Status
-  { id: 'certs', label: 'Certs', dotColor: '#3b82f6' },      // OS 5.0 Blue Status
-  { id: 'skills', label: 'Skills', dotColor: '#eab308' },    // OS 5.0 Amber Status
+  { id: 'about', label: 'About', dotColor: '#22c55e' },
+  { id: 'certs', label: 'Certs', dotColor: '#3b82f6' },
+  { id: 'skills', label: 'Skills', dotColor: '#eab308' },
   { id: 'experience', label: 'Experience', dotColor: '#ea0000' },
   { id: 'projects', label: 'Projects', dotColor: '#ea0000' },
   { id: 'contact', label: 'Contact', dotColor: '#22c55e' }
@@ -217,7 +234,13 @@ const App = () => {
   const [activeSection, setActiveSection] = useState('');
 
   useEffect(() => {
-    document.body.style.backgroundColor = isDark ? '#000000' : '#ffffff';
+    const bg = isDark ? '#000000' : '#ffffff';
+    const fg = isDark ? '#ffffff' : '#000000';
+    document.documentElement.style.backgroundColor = bg;
+    document.documentElement.style.color = fg;
+    document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';
+    document.body.style.backgroundColor = bg;
+    document.body.style.color = fg;
   }, [isDark]);
 
   // --- OS 5.0 ACTIVE SECTION STATUS OBSERVER ---
@@ -239,13 +262,20 @@ const App = () => {
   }, [booted]);
 
   return (
-    <div className={`relative min-h-screen overflow-x-hidden transition-colors duration-500 selection:bg-[#ea0000] selection:text-white ${isDark ? 'text-white bg-black' : 'text-black bg-white'}`}>
-      
+    <div
+      style={{
+        backgroundColor: isDark ? '#000000' : '#ffffff',
+        color: isDark ? '#ffffff' : '#000000'
+      }}
+      className={`relative min-h-screen overflow-x-hidden transition-colors duration-500 selection:bg-[#ea0000] selection:text-white ${isDark ? 'text-white bg-black' : 'text-black bg-white'}`}
+    >
       <style dangerouslySetInnerHTML={{__html: `
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: ${isDark ? '#000000' : '#ffffff'}; border-left: 1px solid ${isDark ? '#27272a' : '#e4e4e7'}; }
         ::-webkit-scrollbar-thumb { background: #ea0000; border-radius: 0px; }
         ::-webkit-scrollbar-thumb:hover { background: #cc0000; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
       `}} />
 
       <AnimatePresence>
@@ -256,34 +286,34 @@ const App = () => {
 
       <div className="relative z-10 flex flex-col font-sans w-full max-w-full overflow-hidden">
         
-{/* --- FLOATING NOTHING OS 5.0 GEOMETRIC DOCK --- */}
-        <header className="fixed top-5 left-0 w-full z-50 px-4 pointer-events-none">
+        {/* --- FLOATING NOTHING OS 5.0 GEOMETRIC DOCK --- */}
+        <header className="fixed top-4 md:top-5 left-0 w-full z-50 px-3 md:px-4 pointer-events-none">
           <motion.nav 
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={OS5_SPRING}
-            className={`pointer-events-auto max-w-[740px] mx-auto pl-4 pr-2 h-11 rounded-[4px] flex items-center justify-between backdrop-blur-2xl border shadow-2xl transition-colors duration-300 ${
+            className={`pointer-events-auto max-w-[740px] mx-auto pl-3.5 md:pl-4 pr-2 h-11 rounded-[4px] flex items-center justify-between gap-2 backdrop-blur-2xl border shadow-2xl transition-colors duration-300 ${
               isDark 
-                ? 'bg-zinc-950/75 border-zinc-800 shadow-black/80' 
-                : 'bg-white/80 border-zinc-300 shadow-zinc-300/50'
+                ? 'bg-zinc-950/85 border-zinc-800 shadow-black/80 text-white' 
+                : 'bg-white/90 border-zinc-300 shadow-zinc-300/50 text-black'
             }`}
           >
             {/* Brand Anchor */}
-            <a href="#" className="flex items-center group pr-3 border-r border-dotted border-zinc-700/60 h-6">
-              <span className="font-nothing text-lg tracking-widest mt-0.5 group-hover:text-[#ea0000] transition-colors duration-150">
+            <a href="#" className="flex items-center shrink-0 group pr-2.5 md:pr-3 border-r border-dotted border-zinc-700/60 h-6">
+              <span className="font-nothing text-base md:text-lg tracking-widest mt-0.5 group-hover:text-[#ea0000] transition-colors duration-150">
                 TSK
               </span>
             </a>
             
-            {/* Crisp Rectangular Active Bracket Links */}
-            <div className={`hidden md:flex items-center gap-1 text-[9px] font-bold tracking-[0.18em] uppercase ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
+            {/* Crisp Rectangular Active Bracket Links (Scrollable on Mobile) */}
+            <div className={`flex items-center gap-1 overflow-x-auto no-scrollbar text-[8px] md:text-[9px] font-bold tracking-[0.14em] md:tracking-[0.18em] uppercase ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
               {NAV_ITEMS.map((item) => {
                 const isActive = activeSection === item.id;
                 return (
                   <a
                     key={item.id}
                     href={`#${item.id}`}
-                    className={`relative px-3 py-1.5 rounded-[2px] flex items-center gap-1.5 transition-colors duration-150 ${
+                    className={`relative px-2 md:px-3 py-1.5 rounded-[2px] flex items-center gap-1.5 shrink-0 transition-colors duration-150 ${
                       isActive 
                         ? (isDark ? 'text-white' : 'text-black') 
                         : (isDark ? 'hover:text-zinc-200' : 'hover:text-zinc-900')
@@ -312,11 +342,12 @@ const App = () => {
               })}
             </div>
             
-            {/* Mechanical Square Theme Switch (Matches Original) */}
+            {/* Mechanical Square Theme Switch */}
             <button 
-              onClick={() => setIsDark(!isDark)} 
+              type="button"
+              onClick={() => setIsDark(prev => !prev)} 
               aria-label="Toggle theme"
-              className={`relative w-12 h-6 rounded-[2px] border flex items-center transition-colors duration-200 cursor-pointer overflow-hidden p-0.5 ${
+              className={`relative shrink-0 w-12 h-6 rounded-[2px] border flex items-center transition-colors duration-200 cursor-pointer touch-manipulation overflow-hidden p-0.5 ${
                 isDark ? 'border-zinc-700 bg-black' : 'border-zinc-300 bg-zinc-100'
               }`}
             >
@@ -695,17 +726,17 @@ const App = () => {
                   
                   <img src={project.img} alt={project.name} className="w-full h-full object-cover grayscale opacity-70 group-hover:opacity-40 group-hover:grayscale-0 group-hover:blur-sm transition-all duration-300 z-0" />
                   
-                  <div className="absolute inset-0 bg-transparent group-hover:bg-black/50 transition-colors duration-200 z-10" />
+                  <div className="absolute inset-0 bg-black/40 md:bg-transparent md:group-hover:bg-black/50 transition-colors duration-200 z-10" />
 
                   <div className={`absolute top-3 left-3 px-2 py-1 font-mono text-[8px] font-bold tracking-widest uppercase shadow-xl z-20 ${isDark ? 'bg-white text-black' : 'bg-black text-white'}`}>
                     {project.id}
                   </div>
                   
-                  <div className="absolute inset-0 flex items-center justify-center gap-5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-30">
-                    <SocialLink href={project.link} isDark={isDark}>
+                  <div className="absolute inset-0 flex items-center justify-center gap-5 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-200 z-30">
+                    <SocialLink href={project.link} isDark={true}>
                       <ArrowUpRightIcon />
                     </SocialLink>
-                    <SocialLink href={project.repo} isDark={isDark}>
+                    <SocialLink href={project.repo} isDark={true}>
                       <GithubIcon />
                     </SocialLink>
                   </div>
