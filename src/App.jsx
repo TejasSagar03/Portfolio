@@ -143,38 +143,183 @@ const CanvasDotGrid = ({ isDark, hoverColorRGB }) => {
   return <canvas ref={canvasRef} className="fixed inset-0 z-0 pointer-events-none" />;
 };
 
-// --- BOOT SEQUENCE ---
+// --- APPLE x NOTHING LIQUID GLYPH SHUTTER BOOT SCREEN ---
 const BootSequence = ({ setBooted }) => {
   const [progress, setProgress] = useState(0);
-  const [stage, setStage] = useState(0);
+  const [splitting, setSplitting] = useState(false);
+  const canvasRef = useRef(null);
+
   useEffect(() => {
-    const pInterval = setInterval(() => setProgress(p => (p < 100 ? p + Math.floor(Math.random() * 30) : 100)), 100);
-    const s1 = setTimeout(() => setStage(1), 600);
-    const s2 = setTimeout(() => setStage(2), 1200);
-    const s3 = setTimeout(() => { setStage(3); setTimeout(() => setBooted(true), 150); }, 1800);
-    return () => { clearInterval(pInterval); clearTimeout(s1); clearTimeout(s2); clearTimeout(s3); };
+    const pInterval = setInterval(() => {
+      setProgress(p => (p < 100 ? Math.min(p + Math.floor(Math.random() * 18) + 12, 100) : 100));
+    }, 75);
+
+    const t1 = setTimeout(() => setSplitting(true), 1400);
+    const t2 = setTimeout(() => setBooted(true), 1950);
+
+    return () => {
+      clearInterval(pInterval);
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
   }, [setBooted]);
-  const bar = Array.from({ length: 20 }).map((_, i) => (i < (progress / 5) ? '█' : '░')).join('');
+
+  // --- LIQUID CHROMATIC DOT-MATRIX CANVAS ---
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let animId;
+
+    const resize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    resize();
+    window.addEventListener('resize', resize);
+
+    const startTime = performance.now();
+    const spacing = 28;
+
+    const render = (now) => {
+      const t = (now - startTime) / 1000;
+      const w = canvas.width;
+      const h = canvas.height;
+      const cx = w / 2;
+      const cy = h / 2;
+
+      ctx.clearRect(0, 0, w, h);
+
+      for (let x = spacing / 2; x < w; x += spacing) {
+        for (let y = spacing / 2; y < h; y += spacing) {
+          const dx = x - cx;
+          const dy = y - cy;
+          const dist = Math.hypot(dx, dy);
+          const angle = Math.atan2(dy, dx);
+
+          // Fluid Apple-style organic wave + Nothing radial glyph pulse
+          const wave = Math.sin(dist * 0.022 - t * 6.5 + Math.sin(angle * 3 + t * 2) * 1.4);
+          const intensity = Math.max(0, wave);
+
+          // Keep center behind TSK text crisp and unobstructed
+          const centerClear = Math.min(1, Math.max(0, (dist - 120) / 110));
+
+          // Physical displacement like liquid glass
+          const push = intensity * 5 * centerClear;
+          const drawX = x + (dx / (dist || 1)) * push;
+          const drawY = y + (dy / (dist || 1)) * push;
+
+          const alpha = (0.08 + intensity * 0.75) * centerClear;
+          const radius = 1.0 + intensity * 2.4;
+
+          // Crimson highlights on peak crests, pure silver-white elsewhere
+          if (intensity > 0.78) {
+            ctx.fillStyle = `rgba(234, 0, 0, ${alpha})`;
+          } else {
+            ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+          }
+
+          ctx.beginPath();
+          ctx.arc(drawX, drawY, radius, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      animId = requestAnimationFrame(render);
+    };
+
+    animId = requestAnimationFrame(render);
+    return () => {
+      window.removeEventListener('resize', resize);
+      cancelAnimationFrame(animId);
+    };
+  }, []);
 
   return (
-    <motion.div exit={{ opacity: 0, filter: "blur(10px)" }} transition={{ duration: 0.4 }}
-      className={`fixed inset-0 z-[100] flex flex-col justify-center items-center p-12 font-mono text-xs uppercase tracking-widest ${stage === 3 ? 'bg-white text-black' : 'bg-black text-[#d4d4d4]'}`}
-    >
-      <div className="w-full max-w-xl">
-        <p className="text-[#ea0000] mb-8 font-bold tracking-[0.3em]">TS_OS [V.5.0]</p>
-        <div className="mb-8 flex flex-col gap-2 opacity-70">
-          <p>INIT KERNEL........ [OK]</p>
-          <p>LOAD DRIVERS....... [{Math.min(progress, 100)}%]</p>
+    <div className="fixed inset-0 z-[100] pointer-events-none select-none overflow-hidden">
+      {/* Top & Bottom Precision Shutter Curtains */}
+      <motion.div
+        initial={{ y: 0 }}
+        animate={{ y: splitting ? '-100%' : 0 }}
+        transition={{ duration: 0.55, ease: [0.76, 0, 0.24, 1] }}
+        className="absolute top-0 left-0 w-full h-1/2 bg-black border-b border-white/10"
+      />
+      <motion.div
+        initial={{ y: 0 }}
+        animate={{ y: splitting ? '100%' : 0 }}
+        transition={{ duration: 0.55, ease: [0.76, 0, 0.24, 1] }}
+        className="absolute bottom-0 left-0 w-full h-1/2 bg-black border-t border-white/10"
+      />
+
+      {/* Interactive Content Layer (Fades cleanly right as shutters part) */}
+      <motion.div
+        animate={{
+          opacity: splitting ? 0 : 1,
+          scale: splitting ? 1.08 : 1,
+          filter: splitting ? 'blur(8px)' : 'blur(0px)'
+        }}
+        transition={{ duration: 0.3, ease: 'easeOut' }}
+        className="relative w-full h-full flex flex-col justify-between items-center py-12 px-6"
+      >
+        {/* Full-Screen Liquid Glyph Matrix */}
+        <canvas ref={canvasRef} className="absolute inset-0" />
+
+        {/* Ambient Apple Volumetric Glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[480px] h-[220px] rounded-full bg-[#ea0000]/15 blur-[110px]" />
+
+        {/* Top Minimalist Telemetry */}
+        <div className="relative z-10 flex items-center gap-3 text-[9px] font-mono tracking-[0.35em] pl-[0.35em] uppercase text-zinc-500">
+          <span>TSK</span>
+          <span className="w-1 h-1 rounded-full bg-[#ea0000]" />
+          <span>OS 5.0</span>
         </div>
-        <p className="mb-8 text-white/50 tracking-widest">[{bar}]</p>
-        {stage >= 2 && (
-          <div className="flex items-center gap-4 mt-8 border-t border-white/20 pt-8">
-            <div className="w-2 h-2 bg-[#ea0000] rounded-full animate-pulse" />
-            <h1 className="font-nothing text-2xl text-white">SYSTEM ONLINE</h1>
+
+        {/* Center Open-Space Hero Typography (No Box) */}
+        <div className="relative z-10 flex flex-col items-center">
+          <div className="relative flex items-center justify-center mb-6">
+            <div className="flex items-center gap-4 md:gap-5">
+              {['T', 'S', 'K'].map((char, i) => (
+                <motion.span
+                  key={char}
+                  initial={{ opacity: 0, y: 24, filter: 'blur(10px)' }}
+                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                  transition={{ type: 'spring', stiffness: 360, damping: 24, delay: i * 0.08 }}
+                  className="font-nothing text-6xl md:text-8xl leading-none text-white drop-shadow-[0_0_25px_rgba(255,255,255,0.2)]"
+                >
+                  {char}
+                </motion.span>
+              ))}
+            </div>
+            <motion.span
+              initial={{ scale: 0 }}
+              animate={{ scale: [1, 1.35, 1] }}
+              transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
+              className="ml-3 md:ml-4 mt-7 md:mt-10 w-3 h-3 rounded-full bg-[#ea0000] shadow-[0_0_20px_#ea0000]"
+            />
           </div>
-        )}
-      </div>
-    </motion.div>
+
+          {/* Razor-Thin Laser Progress Line */}
+          <div className="w-56 md:w-72 h-[2px] bg-zinc-900 overflow-hidden mb-4 relative">
+            <motion.div
+              className="h-full bg-gradient-to-r from-white via-white to-[#ea0000] shadow-[0_0_12px_#ea0000]"
+              initial={{ width: '0%' }}
+              animate={{ width: `${progress}%` }}
+              transition={{ duration: 0.1, ease: 'easeOut' }}
+            />
+          </div>
+
+          {/* Crisp Centered Counter */}
+          <span className="text-[10px] font-mono tracking-[0.35em] pl-[0.35em] uppercase text-zinc-400">
+            {progress < 100 ? `${String(progress).padStart(3, '0')}%` : 'UNLOCKING'}
+          </span>
+        </div>
+
+        {/* Bottom Signature */}
+        <div className="relative z-10 text-[8px] font-mono tracking-[0.35em] pl-[0.35em] uppercase text-zinc-600">
+          PURE FUNCTION
+        </div>
+      </motion.div>
+    </div>
   );
 };
 
