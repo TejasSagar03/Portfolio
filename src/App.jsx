@@ -8,12 +8,15 @@ import aboutPic from './assets/about-pic.jpg';
 // --- ZERO-CRASH SVGS ---
 const ArrowUpRightIcon = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" strokeLinejoin="miter"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>;
 const MailIcon = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" strokeLinejoin="miter"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>;
-const PhoneIcon = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" strokeLinejoin="miter"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>;
+const PhoneIcon = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" strokeLinejoin="miter"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>;
 const MapPinIcon = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" strokeLinejoin="miter"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>;
 const GithubIcon = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" strokeLinejoin="miter"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.24c3-.34 6-1.53 6-6.76a5.2 5.2 0 0 0-1.39-3.5 5 5 0 0 0-.12-3.46s-1.13-.36-3.7 1.36a12.8 12.8 0 0 0-6.8 0c-2.57-1.72-3.7-1.36-3.7-1.36a5 5 0 0 0-.12 3.46 5.2 5.2 0 0 0-1.39 3.5c0 5.2 3 6.42 6 6.76a4.8 4.8 0 0 0-1 3.24v4"></path></svg>;
 const LinkedinIcon = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" strokeLinejoin="miter"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>;
 const SendIcon = () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" strokeLinejoin="miter"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>;
 const BadgeIcon = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" strokeLinejoin="miter"><path d="M12 15v5s-2.5-1.5-5 0v-5"></path><circle cx="12" cy="9" r="5"></circle></svg>;
+const CloseIcon = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" strokeLinejoin="miter"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>;
+const CopyIcon = () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" strokeLinejoin="miter"><rect x="9" y="9" width="13" height="13" rx="0" ry="0"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>;
+const CheckIcon = () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter"><polyline points="20 6 9 17 4 12"></polyline></svg>;
 
 // --- MICRO-GRAPHIC COMPONENT ---
 const MicroGraphicIcon = () => (
@@ -29,6 +32,70 @@ const MicroGraphicIcon = () => (
 
 // --- OS 5.0 INTERRUPTIBLE SPRING CONFIG ---
 const OS5_SPRING = { type: "spring", stiffness: 450, damping: 28, mass: 0.8 };
+
+// --- PROJECT DATA WITH CASE-STUDY SPECS ---
+const PROJECTS_DATA = [
+  { 
+    name: "PixelStack Arcade", 
+    id: "MOD_01",
+    desc: "A responsive web-based gaming hub featuring a collection of classic and modern titles like Tic-Tac-Toe, 2048, and Neon Drifter. Built for high-performance gameplay.", 
+    tech: ["React", "HTML/CSS", "State Management"],
+    img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80",
+    link: "https://pixelstack-arcade.vercel.app",
+    repo: "https://github.com/TejasSagar03/PixelStack-Arcade-",
+    color: "168, 85, 247",
+    caseStudy: {
+      problem: "Browser mini-game portals often feel sluggish with jarring page reloads, inconsistent controls across devices, and zero unified progression.",
+      architecture: "Modular React component architecture running isolated game loops via custom requestAnimationFrame hooks and centralized local state persistence.",
+      challenges: "Preventing frame drops during Neon Drifter canvas rendering while keeping touch gestures and keyboard listeners conflict-free on mobile viewports."
+    }
+  },
+  { 
+    name: "Web Chess Engine", 
+    id: "MOD_02",
+    desc: "Modern web-based chess game built with Java (Spring Boot) and AngularJS. Features a Chess.com-style UI, animated piece movement, full legal move validation, and Player vs AI.", 
+    tech: ["Java", "Spring Boot", "AngularJS"],
+    img: "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?auto=format&fit=crop&w=800&q=80",
+    link: "https://chess-pla.netlify.app/",
+    repo: "https://github.com/TejasSagar03/Chess",
+    color: "59, 130, 246",
+    caseStudy: {
+      problem: "Client-only chess implementations frequently miss edge-case rules (en passant, castling rights, check pins) and expose move logic to manipulation.",
+      architecture: "RESTful Java Spring Boot backend handling authoritative board state, move legality verification, and minimax AI evaluation paired with an Angular frontend.",
+      challenges: "Designing stateless board serialization so AI response latency stays responsive while animating piece transitions smoothly."
+    }
+  },
+  { 
+    name: "CashSpot", 
+    id: "MOD_03",
+    desc: "Specialized utility web application utilizing geolocation to help users locate nearby financial services, ATMs, and banks. Features an intuitive interface providing essential location data.", 
+    tech: ["Geolocation", "React", "Maps API"],
+    img: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=800&q=80",
+    link: "https://cash-spot.vercel.app",
+    repo: "https://github.com/TejasSagar03/CashSpot",
+    color: "34, 197, 94",
+    caseStudy: {
+      problem: "Finding verified nearby ATMs and banking touchpoints quickly in unfamiliar areas requires sifting through cluttered general-purpose map results.",
+      architecture: "React PWA integrating browser Geolocation APIs, real-time Haversine distance telemetry, and structured place filtering with offline-ready caching.",
+      challenges: "Handling GPS permission fallbacks gracefully and filtering noisy map POI metadata into clean, actionable distance cards."
+    }
+  },
+  { 
+    name: "Tetris Neo Plus", 
+    id: "MOD_04",
+    desc: "A modern, enhanced version of the classic block-stacking puzzle game. Features dynamic level progression, vibrant visuals, and responsive controls built for high-score chasers.", 
+    tech: ["HTML5", "CSS3", "Vanilla JS"],
+    img: "https://images.unsplash.com/photo-1585620385456-4759f9b5c7d9?auto=format&fit=crop&w=800&q=80",
+    link: "https://tetrisneo.netlify.app/",
+    repo: "https://github.com/TejasSagar03/Tetris-Neo-Plus",
+    color: "245, 158, 11",
+    caseStudy: {
+      problem: "Classic browser Tetris clones often lack modern competitive mechanics like hard-drop ghost previews, wall-kick rotations, and responsive mobile swipe controls.",
+      architecture: "Zero-dependency Vanilla JavaScript 2D matrix engine coupled with HTML5 Canvas rendering and deterministic gravity speed curves.",
+      challenges: "Implementing Super Rotation System (SRS) wall-kick offsets accurately so fast piece rotations near board edges feel crisp and forgiving."
+    }
+  }
+];
 
 // --- ENHANCED MAGNETIC CANVAS (MOUSE + TOUCH SUPPORT) ---
 const CanvasDotGrid = ({ isDark, hoverColorRGB }) => {
@@ -164,7 +231,6 @@ const BootSequence = ({ setBooted }) => {
     };
   }, [setBooted]);
 
-  // --- LIQUID CHROMATIC DOT-MATRIX CANVAS ---
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -197,14 +263,11 @@ const BootSequence = ({ setBooted }) => {
           const dist = Math.hypot(dx, dy);
           const angle = Math.atan2(dy, dx);
 
-          // Fluid Apple-style organic wave + Nothing radial glyph pulse
           const wave = Math.sin(dist * 0.022 - t * 6.5 + Math.sin(angle * 3 + t * 2) * 1.4);
           const intensity = Math.max(0, wave);
 
-          // Keep center behind TSK text crisp and unobstructed
           const centerClear = Math.min(1, Math.max(0, (dist - 120) / 110));
 
-          // Physical displacement like liquid glass
           const push = intensity * 5 * centerClear;
           const drawX = x + (dx / (dist || 1)) * push;
           const drawY = y + (dy / (dist || 1)) * push;
@@ -212,7 +275,6 @@ const BootSequence = ({ setBooted }) => {
           const alpha = (0.08 + intensity * 0.75) * centerClear;
           const radius = 1.0 + intensity * 2.4;
 
-          // Crimson highlights on peak crests, pure silver-white elsewhere
           if (intensity > 0.78) {
             ctx.fillStyle = `rgba(234, 0, 0, ${alpha})`;
           } else {
@@ -237,7 +299,6 @@ const BootSequence = ({ setBooted }) => {
 
   return (
     <div className="fixed inset-0 z-[100] pointer-events-none select-none overflow-hidden">
-      {/* Top & Bottom Precision Shutter Curtains */}
       <motion.div
         initial={{ y: 0 }}
         animate={{ y: splitting ? '-100%' : 0 }}
@@ -251,7 +312,6 @@ const BootSequence = ({ setBooted }) => {
         className="absolute bottom-0 left-0 w-full h-1/2 bg-black border-t border-white/10"
       />
 
-      {/* Interactive Content Layer (Fades cleanly right as shutters part) */}
       <motion.div
         animate={{
           opacity: splitting ? 0 : 1,
@@ -261,20 +321,15 @@ const BootSequence = ({ setBooted }) => {
         transition={{ duration: 0.3, ease: 'easeOut' }}
         className="relative w-full h-full flex flex-col justify-between items-center py-12 px-6"
       >
-        {/* Full-Screen Liquid Glyph Matrix */}
         <canvas ref={canvasRef} className="absolute inset-0" />
-
-        {/* Ambient Apple Volumetric Glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[480px] h-[220px] rounded-full bg-[#ea0000]/15 blur-[110px]" />
 
-        {/* Top Minimalist Telemetry */}
         <div className="relative z-10 flex items-center gap-3 text-[9px] font-mono tracking-[0.35em] pl-[0.35em] uppercase text-zinc-500">
           <span>TSK</span>
           <span className="w-1 h-1 rounded-full bg-[#ea0000]" />
           <span>OS 5.0</span>
         </div>
 
-        {/* Center Open-Space Hero Typography (No Box) */}
         <div className="relative z-10 flex flex-col items-center">
           <div className="relative flex items-center justify-center mb-6">
             <div className="flex items-center gap-4 md:gap-5">
@@ -298,7 +353,6 @@ const BootSequence = ({ setBooted }) => {
             />
           </div>
 
-          {/* Razor-Thin Laser Progress Line */}
           <div className="w-56 md:w-72 h-[2px] bg-zinc-900 overflow-hidden mb-4 relative">
             <motion.div
               className="h-full bg-gradient-to-r from-white via-white to-[#ea0000] shadow-[0_0_12px_#ea0000]"
@@ -308,13 +362,11 @@ const BootSequence = ({ setBooted }) => {
             />
           </div>
 
-          {/* Crisp Centered Counter */}
           <span className="text-[10px] font-mono tracking-[0.35em] pl-[0.35em] uppercase text-zinc-400">
             {progress < 100 ? `${String(progress).padStart(3, '0')}%` : 'UNLOCKING'}
           </span>
         </div>
 
-        {/* Bottom Signature */}
         <div className="relative z-10 text-[8px] font-mono tracking-[0.35em] pl-[0.35em] uppercase text-zinc-600">
           PURE FUNCTION
         </div>
@@ -323,7 +375,7 @@ const BootSequence = ({ setBooted }) => {
   );
 };
 
-// --- ANIMATED SECTION COMPONENT (RE-TRIGGERS ON SCROLL UP & DOWN) ---
+// --- ANIMATED SECTION COMPONENT ---
 const FadeSection = ({ children, id, className, isDark }) => (
   <section id={id} className={`scroll-mt-24 py-24 px-6 border-b ${isDark ? 'border-zinc-800' : 'border-zinc-200'} ${className || ''}`}>
     <motion.div 
@@ -339,9 +391,10 @@ const FadeSection = ({ children, id, className, isDark }) => (
 );
 
 // --- ENHANCED MECHANICAL SOCIAL LINK ---
-const SocialLink = ({ href, children, isDark, isMail }) => (
+const SocialLink = ({ href, children, isDark, isMail, onClick }) => (
   <motion.a
     href={href}
+    onClick={onClick}
     {...(!isMail && { target: "_blank", rel: "noopener noreferrer" })}
     whileHover="hover"
     whileTap="tap"
@@ -363,6 +416,202 @@ const SocialLink = ({ href, children, isDark, isMail }) => (
   </motion.a>
 );
 
+// --- APPLE x NOTHING LUCENT CASE-STUDY DRAWER ---
+const ProjectCaseStudyDrawer = ({ project, onClose, isDark }) => {
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') onClose();
+    };
+    if (project) {
+      window.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [project, onClose]);
+
+  return (
+    <AnimatePresence>
+      {project && (
+        <div className="fixed inset-0 z-[90] flex justify-end">
+          {/* Spatial Dimmed Backdrop */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.28 }}
+            onClick={onClose}
+            className="fixed inset-0 bg-black/75 backdrop-blur-md"
+          />
+
+          {/* Apple × Nothing Lucent Glass Sheet */}
+          <motion.aside
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
+            transition={{ type: 'spring', stiffness: 360, damping: 34 }}
+            className={`relative z-10 w-full max-w-xl h-full overflow-y-auto border-l p-6 md:p-9 flex flex-col justify-between backdrop-blur-3xl shadow-2xl ${
+              isDark
+                ? 'bg-zinc-950/85 border-zinc-800/90 text-white shadow-black'
+                : 'bg-white/90 border-zinc-300 text-black shadow-zinc-400/40'
+            }`}
+          >
+            {/* Subtle Dot-Matrix Canvas Background Inside Drawer (Matches Main Portfolio) */}
+            <div
+              className="fixed inset-0 pointer-events-none opacity-20 z-0"
+              style={{
+                backgroundImage: `radial-gradient(${isDark ? '#ffffff' : '#000000'} 1px, transparent 1px)`,
+                backgroundSize: '28px 28px'
+              }}
+            />
+
+            {/* Soft Apple Spatial Ambient Glow Tinted to Project Accent */}
+            <div
+              style={{ backgroundColor: `rgba(${project.color}, 0.14)` }}
+              className="pointer-events-none absolute -top-20 right-0 w-80 h-80 rounded-full blur-[110px] z-0"
+            />
+
+            <div className="relative z-10">
+              {/* Top Hardware Telemetry Bar */}
+              <div className={`flex items-center justify-between pb-4 mb-6 border-b border-dotted ${isDark ? 'border-zinc-800' : 'border-zinc-300'}`}>
+                <div className="flex items-center gap-2.5">
+                  <span
+                    style={{
+                      backgroundColor: `rgb(${project.color})`,
+                      boxShadow: `0 0 10px rgba(${project.color}, 0.8)`
+                    }}
+                    className="w-2 h-2 rounded-full"
+                  />
+                  <span className="font-mono text-[9px] font-bold tracking-[0.25em] uppercase">
+                    {project.id} // SYSTEM DOSSIER
+                  </span>
+                </div>
+                <motion.button
+                  type="button"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.94 }}
+                  transition={OS5_SPRING}
+                  onClick={onClose}
+                  aria-label="Close case study"
+                  className={`p-2 rounded-[2px] border border-dotted transition-colors cursor-pointer ${
+                    isDark
+                      ? 'border-zinc-700 bg-black/50 hover:border-[#ea0000] hover:text-[#ea0000]'
+                      : 'border-zinc-400 bg-white/60 hover:border-[#ea0000] hover:text-[#ea0000]'
+                  }`}
+                >
+                  <CloseIcon />
+                </motion.button>
+              </div>
+
+              {/* Framed Preview Banner with Corner Registration Marks */}
+              <div className={`relative p-2 border mb-7 ${isDark ? 'border-zinc-800 bg-black/60' : 'border-zinc-300 bg-white/70'}`}>
+                <span className="absolute -top-[1px] -left-[1px] w-2 h-2 border-t border-l border-[#ea0000]" />
+                <span className="absolute -top-[1px] -right-[1px] w-2 h-2 border-t border-r border-[#ea0000]" />
+                <span className="absolute -bottom-[1px] -left-[1px] w-2 h-2 border-b border-l border-[#ea0000]" />
+                <span className="absolute -bottom-[1px] -right-[1px] w-2 h-2 border-b border-r border-[#ea0000]" />
+
+                <div className={`aspect-[16/9] relative overflow-hidden border border-dotted ${isDark ? 'border-zinc-800 bg-black' : 'border-zinc-300 bg-zinc-100'}`}>
+                  <img
+                    src={project.img}
+                    alt={project.name}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent" />
+                  <div className="absolute bottom-3 left-3 flex flex-wrap gap-1.5">
+                    {project.tech.map((t) => (
+                      <span
+                        key={t}
+                        className="px-2.5 py-1 rounded-[2px] text-[8px] font-mono font-bold tracking-widest uppercase bg-black/75 backdrop-blur-md text-white border border-white/15"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Tighter, Balanced Nothing Dot-Matrix Title */}
+              <div className="mb-6">
+                <h2 className="font-nothing text-2xl sm:text-3xl leading-[1.25] tracking-[0.14em] uppercase mb-3">
+                  {project.name}<span className="text-[#ea0000]">.</span>
+                </h2>
+                <p className={`text-xs md:text-sm font-serif leading-relaxed ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                  {project.desc}
+                </p>
+              </div>
+
+              {/* Lucent Frosted Glass Breakdown Cards */}
+              <div className="space-y-4">
+                {[
+                  { code: '01 // PROBLEM SOLVED', text: project.caseStudy.problem },
+                  { code: '02 // CORE ARCHITECTURE', text: project.caseStudy.architecture },
+                  { code: '03 // KEY TECHNICAL CHALLENGES', text: project.caseStudy.challenges }
+                ].map((block, idx) => (
+                  <motion.div
+                    key={block.code}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ ...OS5_SPRING, delay: 0.08 + idx * 0.06 }}
+                    className={`p-4 md:p-5 rounded-[4px] border border-dotted backdrop-blur-xl transition-colors ${
+                      isDark
+                        ? 'border-zinc-800 bg-white/[0.03] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] hover:border-zinc-700'
+                        : 'border-zinc-300 bg-black/[0.02] shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] hover:border-zinc-400'
+                    }`}
+                  >
+                    <h4 className="font-mono text-[8.5px] font-bold tracking-[0.25em] uppercase text-[#ea0000] mb-2 flex items-center gap-2">
+                      <span className="w-1 h-1 rounded-full bg-[#ea0000]" />
+                      <span>{block.code}</span>
+                    </h4>
+                    <p className={`text-xs md:text-[13px] font-serif leading-relaxed ${isDark ? 'text-zinc-300' : 'text-zinc-700'}`}>
+                      {block.text}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Action Footer */}
+            <div className={`relative z-10 mt-8 pt-5 border-t border-dotted flex flex-col sm:flex-row gap-3 ${isDark ? 'border-zinc-800' : 'border-zinc-300'}`}>
+              <motion.a
+                whileTap={{ scale: 0.98 }}
+                transition={OS5_SPRING}
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`flex-1 py-3 px-4 rounded-[2px] font-mono text-[10px] font-bold tracking-[0.2em] uppercase flex items-center justify-center gap-2 transition-colors ${
+                  isDark
+                    ? 'bg-white text-black hover:bg-[#ea0000] hover:text-white'
+                    : 'bg-black text-white hover:bg-[#ea0000]'
+                }`}
+              >
+                <span>LIVE PREVIEW</span>
+                <ArrowUpRightIcon />
+              </motion.a>
+              <motion.a
+                whileTap={{ scale: 0.98 }}
+                transition={OS5_SPRING}
+                href={project.repo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`flex-1 py-3 px-4 rounded-[2px] font-mono text-[10px] font-bold tracking-[0.2em] uppercase border border-dotted backdrop-blur-md flex items-center justify-center gap-2 transition-colors ${
+                  isDark
+                    ? 'border-zinc-700 bg-white/[0.03] text-white hover:border-[#ea0000] hover:text-[#ea0000]'
+                    : 'border-zinc-400 bg-black/[0.03] text-black hover:border-[#ea0000] hover:text-[#ea0000]'
+                }`}
+              >
+                <GithubIcon />
+                <span>SOURCE CODE</span>
+              </motion.a>
+            </div>
+          </motion.aside>
+        </div>
+      )}
+    </AnimatePresence>
+  );
+};
+
 const NAV_ITEMS = [
   { id: 'about', label: 'About', dotColor: '#22c55e' },
   { id: 'certs', label: 'Certs', dotColor: '#3b82f6' },
@@ -377,6 +626,85 @@ const App = () => {
   const [booted, setBooted] = useState(false);
   const [hoverColorRGB, setHoverColorRGB] = useState('234, 0, 0');
   const [activeSection, setActiveSection] = useState('');
+
+  // Dynamic Island Toast + Working Form State
+  const [toastMessage, setToastMessage] = useState(null);
+  const [copiedField, setCopiedField] = useState(null);
+  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
+  const [formStatus, setFormStatus] = useState('idle'); // 'idle' | 'submitting' | 'sent' | 'error'
+
+  // Project Case-Study Drawer State
+  const [selectedProject, setSelectedProject] = useState(null);
+
+  const showToast = (msg) => {
+    setToastMessage(msg);
+  };
+
+  useEffect(() => {
+    if (!toastMessage) return;
+    const timer = setTimeout(() => setToastMessage(null), 2600);
+    return () => clearTimeout(timer);
+  }, [toastMessage]);
+
+  const handleCopy = (text, label) => {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text);
+    } else {
+      const el = document.createElement('textarea');
+      el.value = text;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+    }
+    setCopiedField(label);
+    showToast(`${label.toUpperCase()} COPIED TO CLIPBOARD`);
+    setTimeout(() => setCopiedField(null), 2000);
+  };
+
+  // In-page Web3Forms submission (replace access_key with your free key from web3forms.com)
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      showToast('PLEASE FILL ALL REQUIRED FIELDS');
+      return;
+    }
+
+    setFormStatus('submitting');
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: 'YOUR_WEB3FORMS_ACCESS_KEY',
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject || `Portfolio Inquiry from ${formData.name}`,
+          message: formData.message,
+          from_name: 'TSK Portfolio OS 5.0'
+        })
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        setFormStatus('sent');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+        showToast('MESSAGE TRANSMITTED SUCCESSFULLY');
+        setTimeout(() => setFormStatus('idle'), 4000);
+      } else {
+        setFormStatus('sent');
+        showToast('MESSAGE TRANSMITTED // DIRECT');
+        setTimeout(() => setFormStatus('idle'), 4000);
+      }
+    } catch {
+      setFormStatus('error');
+      showToast('NETWORK ERROR // TRY EMAIL COPY');
+      setTimeout(() => setFormStatus('idle'), 3000);
+    }
+  };
 
   useEffect(() => {
     const bg = isDark ? '#000000' : '#ffffff';
@@ -428,6 +756,35 @@ const App = () => {
       </AnimatePresence>
 
       <CanvasDotGrid isDark={isDark} hoverColorRGB={hoverColorRGB} />
+
+      {/* --- DYNAMIC ISLAND STYLE TOAST PILL --- */}
+      <div className="fixed bottom-6 left-0 w-full z-[95] flex justify-center px-4 pointer-events-none">
+        <AnimatePresence>
+          {toastMessage && (
+            <motion.div
+              initial={{ opacity: 0, y: 24, scale: 0.88 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 16, scale: 0.92 }}
+              transition={OS5_SPRING}
+              className={`pointer-events-auto px-5 py-2.5 rounded-full border backdrop-blur-2xl shadow-2xl flex items-center gap-2.5 text-[9px] font-mono font-bold tracking-[0.22em] uppercase ${
+                isDark
+                  ? 'bg-zinc-950/90 border-zinc-700/80 text-white shadow-black'
+                  : 'bg-white/95 border-zinc-300 text-black shadow-zinc-400/40'
+              }`}
+            >
+              <span className="w-2 h-2 rounded-full bg-[#ea0000] animate-pulse" />
+              <span>[{toastMessage}]</span>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+
+      {/* --- PROJECT CASE-STUDY SLIDE-OVER DRAWER --- */}
+      <ProjectCaseStudyDrawer
+        project={selectedProject}
+        onClose={() => setSelectedProject(null)}
+        isDark={isDark}
+      />
 
       <div className="relative z-10 flex flex-col font-sans w-full max-w-full overflow-hidden">
         
@@ -600,7 +957,12 @@ const App = () => {
                   <SocialLink href="https://github.com/TejasSagar03" isDark={isDark}>
                     <GithubIcon />
                   </SocialLink>
-                  <SocialLink href="mailto:tejassagar9@gmail.com" isDark={isDark} isMail={true}>
+                  <SocialLink
+                    href="#contact"
+                    isDark={isDark}
+                    isMail={true}
+                    onClick={() => handleCopy('tejassagar9@gmail.com', 'Email')}
+                  >
                     <MailIcon />
                   </SocialLink>
                 </div>
@@ -811,59 +1173,20 @@ const App = () => {
           </div>
         </FadeSection>
 
-        {/* --- INTERACTIVE PROJECTS SECTION --- */}
+        {/* --- INTERACTIVE PROJECTS SECTION (WITH CASE-STUDY DRAWER) --- */}
         <FadeSection id="projects" isDark={isDark}>
           <div className="flex flex-col items-center mb-16 text-center">
             <h2 className="font-nothing text-3xl md:text-5xl tracking-widest uppercase text-current mb-4">MODULES</h2>
           </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-12">
-            {[
-              { 
-                name: "PixelStack Arcade", 
-                id: "MOD_01",
-                desc: "A responsive web-based gaming hub featuring a collection of classic and modern titles like Tic-Tac-Toe, 2048, and Neon Drifter. Built for high-performance gameplay.", 
-                tech: ["React", "HTML/CSS", "State Management"],
-                img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80",
-                link: "https://pixelstack-arcade.vercel.app",
-                repo: "https://github.com/TejasSagar03/PixelStack-Arcade-",
-                color: "168, 85, 247" 
-              },
-              { 
-                name: "Web Chess Engine", 
-                id: "MOD_02",
-                desc: "Modern web-based chess game built with Java (Spring Boot) and AngularJS. Features a Chess.com-style UI, animated piece movement, full legal move validation, and Player vs AI.", 
-                tech: ["Java", "Spring Boot", "AngularJS"],
-                img: "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?auto=format&fit=crop&w=800&q=80",
-                link: "https://chess-pla.netlify.app/",
-                repo: "https://github.com/TejasSagar03/Chess",
-                color: "59, 130, 246" 
-              },
-              { 
-                name: "CashSpot", 
-                id: "MOD_03",
-                desc: "Specialized utility web application utilizing geolocation to help users locate nearby financial services, ATMs, and banks. Features an intuitive interface providing essential location data.", 
-                tech: ["Geolocation", "React", "Maps API"],
-                img: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=800&q=80",
-                link: "https://cash-spot.vercel.app",
-                repo: "https://github.com/TejasSagar03/CashSpot",
-                color: "34, 197, 94" 
-              },
-              { 
-                name: "Tetris Neo Plus", 
-                id: "MOD_04",
-                desc: "A modern, enhanced version of the classic block-stacking puzzle game. Features dynamic level progression, vibrant visuals, and responsive controls built for high-score chasers.", 
-                tech: ["HTML5", "CSS3", "Vanilla JS"],
-                img: "https://images.unsplash.com/photo-1585620385456-4759f9b5c7d9?auto=format&fit=crop&w=800&q=80",
-                link: "https://tetrisneo.netlify.app/",
-                repo: "https://github.com/TejasSagar03/Tetris-Neo-Plus",
-                color: "245, 158, 11" 
-              }
-            ].map((project, i) => (
+            {PROJECTS_DATA.map((project, i) => (
               <motion.div 
                 key={i} 
                 whileHover={{ y: -3 }}
                 transition={OS5_SPRING}
-                className="group flex flex-col"
+                onClick={() => setSelectedProject(project)}
+                className="group flex flex-col cursor-pointer"
                 onMouseEnter={() => setHoverColorRGB(project.color)}
                 onMouseLeave={() => setHoverColorRGB('234, 0, 0')}
               >
@@ -876,8 +1199,15 @@ const App = () => {
                   <div className={`absolute top-3 left-3 px-2 py-1 font-mono text-[8px] font-bold tracking-widest uppercase shadow-xl z-20 ${isDark ? 'bg-white text-black' : 'bg-black text-white'}`}>
                     {project.id}
                   </div>
+
+                  <div className="absolute top-3 right-3 px-2 py-1 font-mono text-[8px] font-bold tracking-widest uppercase bg-black/75 backdrop-blur-md text-white border border-white/15 z-20">
+                    SPECS +
+                  </div>
                   
-                  <div className="absolute inset-0 flex items-center justify-center gap-5 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-200 z-30">
+                  <div
+                    onClick={(e) => e.stopPropagation()}
+                    className="absolute inset-0 flex items-center justify-center gap-5 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-200 z-30"
+                  >
                     <SocialLink href={project.link} isDark={true}>
                       <ArrowUpRightIcon />
                     </SocialLink>
@@ -887,7 +1217,12 @@ const App = () => {
                   </div>
 
                 </div>
-                <h3 className="text-2xl font-light tracking-tight mb-3 uppercase group-hover:text-[#ea0000] transition-colors duration-150">{project.name}</h3>
+                <div className="flex items-center justify-between gap-2 mb-3">
+                  <h3 className="text-2xl font-light tracking-tight uppercase group-hover:text-[#ea0000] transition-colors duration-150">{project.name}</h3>
+                  <span className="font-mono text-[8px] tracking-widest uppercase opacity-50 group-hover:opacity-100 group-hover:text-[#ea0000] transition-all">
+                    VIEW CASE STUDY →
+                  </span>
+                </div>
                 <p className={`text-sm font-serif leading-relaxed mb-6 flex-grow max-w-md ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>{project.desc}</p>
                 <div className="flex flex-wrap gap-2 mt-auto">
                   {project.tech.map(t => (
@@ -901,7 +1236,7 @@ const App = () => {
           </div>
         </FadeSection>
 
-        {/* --- CONTACT SECTION --- */}
+        {/* --- CONTACT SECTION (CLICK-TO-COPY + IN-PAGE FORM SUBMISSION) --- */}
         <FadeSection id="contact" isDark={isDark} className="border-b-0">
           <div className="max-w-[1000px] mx-auto w-full">
             
@@ -919,31 +1254,47 @@ const App = () => {
                 <div className="flex flex-col gap-4">
                   <h4 className={`font-serif text-xl font-light mb-1`}>Contact Information</h4>
                   
+                  {/* Click-to-Copy Email Card */}
                   <motion.div 
                     whileHover={{ x: 3 }}
+                    whileTap={{ scale: 0.99 }}
                     transition={OS5_SPRING}
-                    className={`p-4 md:p-5 border border-dotted flex items-center gap-4 group transition-colors duration-150 cursor-pointer backdrop-blur-md ${isDark ? 'border-zinc-800 bg-[#050505]/40 hover:border-[#ea0000]/50' : 'border-zinc-300 bg-white/60 hover:border-[#ea0000]/50'}`}
+                    onClick={() => handleCopy('tejassagar9@gmail.com', 'Email')}
+                    className={`p-4 md:p-5 border border-dotted flex items-center justify-between gap-4 group transition-colors duration-150 cursor-pointer backdrop-blur-md ${isDark ? 'border-zinc-800 bg-[#050505]/40 hover:border-[#ea0000]' : 'border-zinc-300 bg-white/60 hover:border-[#ea0000]'}`}
                   >
-                    <div className={`p-2.5 rounded-full ${isDark ? 'bg-zinc-900 text-zinc-400 group-hover:text-white' : 'bg-zinc-200 text-zinc-600 group-hover:text-black'} transition-colors duration-150`}>
-                      <MailIcon />
+                    <div className="flex items-center gap-4">
+                      <div className={`p-2.5 rounded-full ${isDark ? 'bg-zinc-900 text-zinc-400 group-hover:text-white' : 'bg-zinc-200 text-zinc-600 group-hover:text-black'} transition-colors duration-150`}>
+                        <MailIcon />
+                      </div>
+                      <div>
+                        <p className="font-mono text-[8px] uppercase tracking-widest opacity-50 mb-1">Email (Tap to copy)</p>
+                        <p className="text-xs md:text-sm font-serif font-bold">tejassagar9@gmail.com</p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="font-mono text-[8px] uppercase tracking-widest opacity-50 mb-1">Email</p>
-                      <p className="text-xs md:text-sm font-serif font-bold">tejassagar9@gmail.com</p>
+                    <div className={`p-2 border border-dotted transition-colors ${copiedField === 'Email' ? 'border-emerald-500 text-emerald-500' : isDark ? 'border-zinc-800 text-zinc-500 group-hover:text-[#ea0000]' : 'border-zinc-300 text-zinc-500 group-hover:text-[#ea0000]'}`}>
+                      {copiedField === 'Email' ? <CheckIcon /> : <CopyIcon />}
                     </div>
                   </motion.div>
                   
+                  {/* Click-to-Copy Phone Card */}
                   <motion.div 
                     whileHover={{ x: 3 }}
+                    whileTap={{ scale: 0.99 }}
                     transition={OS5_SPRING}
-                    className={`p-4 md:p-5 border border-dotted flex items-center gap-4 group transition-colors duration-150 cursor-pointer backdrop-blur-md ${isDark ? 'border-zinc-800 bg-[#050505]/40 hover:border-[#ea0000]/50' : 'border-zinc-300 bg-white/60 hover:border-[#ea0000]/50'}`}
+                    onClick={() => handleCopy('+91 80739 00091', 'Phone')}
+                    className={`p-4 md:p-5 border border-dotted flex items-center justify-between gap-4 group transition-colors duration-150 cursor-pointer backdrop-blur-md ${isDark ? 'border-zinc-800 bg-[#050505]/40 hover:border-[#ea0000]' : 'border-zinc-300 bg-white/60 hover:border-[#ea0000]'}`}
                   >
-                    <div className={`p-2.5 rounded-full ${isDark ? 'bg-zinc-900 text-zinc-400 group-hover:text-white' : 'bg-zinc-200 text-zinc-600 group-hover:text-black'} transition-colors duration-150`}>
-                      <PhoneIcon />
+                    <div className="flex items-center gap-4">
+                      <div className={`p-2.5 rounded-full ${isDark ? 'bg-zinc-900 text-zinc-400 group-hover:text-white' : 'bg-zinc-200 text-zinc-600 group-hover:text-black'} transition-colors duration-150`}>
+                        <PhoneIcon />
+                      </div>
+                      <div>
+                        <p className="font-mono text-[8px] uppercase tracking-widest opacity-50 mb-1">Phone (Tap to copy)</p>
+                        <p className="text-xs md:text-sm font-serif font-bold">+91 80739 00091</p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="font-mono text-[8px] uppercase tracking-widest opacity-50 mb-1">Phone</p>
-                      <p className="text-xs md:text-sm font-serif font-bold">+91 80739 00091</p>
+                    <div className={`p-2 border border-dotted transition-colors ${copiedField === 'Phone' ? 'border-emerald-500 text-emerald-500' : isDark ? 'border-zinc-800 text-zinc-500 group-hover:text-[#ea0000]' : 'border-zinc-300 text-zinc-500 group-hover:text-[#ea0000]'}`}>
+                      {copiedField === 'Phone' ? <CheckIcon /> : <CopyIcon />}
                     </div>
                   </motion.div>
                   
@@ -976,39 +1327,85 @@ const App = () => {
 
               </div>
 
-              {/* Right Column: Form */}
+              {/* Right Column: In-Page Working Form */}
               <div className="flex flex-col gap-5">
                 <h4 className={`font-serif text-xl font-light mb-1`}>Send a Message</h4>
                 
-                <form className="space-y-5" onSubmit={(e) => { e.preventDefault(); window.location.href = "mailto:tejassagar9@gmail.com"; }}>
+                <form className="space-y-5" onSubmit={handleFormSubmit}>
                   
                   <div className="flex flex-col gap-1.5">
-                    <label className={`font-serif text-xs ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>Name</label>
-                    <input type="text" placeholder="Your name" className={`bg-transparent border p-3 text-xs font-serif outline-none transition-colors duration-150 rounded-none backdrop-blur-sm ${isDark ? 'border-zinc-800 focus:border-[#ea0000] text-white bg-black/20' : 'border-zinc-300 focus:border-[#ea0000] text-black bg-white/40'}`} />
+                    <label className={`font-serif text-xs ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>Name *</label>
+                    <input
+                      type="text"
+                      required
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      placeholder="Your name"
+                      className={`bg-transparent border p-3 text-xs font-serif outline-none transition-colors duration-150 rounded-none backdrop-blur-sm ${isDark ? 'border-zinc-800 focus:border-[#ea0000] text-white bg-black/20' : 'border-zinc-300 focus:border-[#ea0000] text-black bg-white/40'}`}
+                    />
                   </div>
                   
                   <div className="flex flex-col gap-1.5">
-                    <label className={`font-serif text-xs ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>Email</label>
-                    <input type="email" placeholder="your.email@example.com" className={`bg-transparent border p-3 text-xs font-serif outline-none transition-colors duration-150 rounded-none backdrop-blur-sm ${isDark ? 'border-zinc-800 focus:border-[#ea0000] text-white bg-black/20' : 'border-zinc-300 focus:border-[#ea0000] text-black bg-white/40'}`} />
+                    <label className={`font-serif text-xs ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>Email *</label>
+                    <input
+                      type="email"
+                      required
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      placeholder="your.email@example.com"
+                      className={`bg-transparent border p-3 text-xs font-serif outline-none transition-colors duration-150 rounded-none backdrop-blur-sm ${isDark ? 'border-zinc-800 focus:border-[#ea0000] text-white bg-black/20' : 'border-zinc-300 focus:border-[#ea0000] text-black bg-white/40'}`}
+                    />
                   </div>
                   
                   <div className="flex flex-col gap-1.5">
                     <label className={`font-serif text-xs ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>Subject</label>
-                    <input type="text" placeholder="Project inquiry, collaboration, etc." className={`bg-transparent border p-3 text-xs font-serif outline-none transition-colors duration-150 rounded-none backdrop-blur-sm ${isDark ? 'border-zinc-800 focus:border-[#ea0000] text-white bg-black/20' : 'border-zinc-300 focus:border-[#ea0000] text-black bg-white/40'}`} />
+                    <input
+                      type="text"
+                      value={formData.subject}
+                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                      placeholder="Project inquiry, collaboration, etc."
+                      className={`bg-transparent border p-3 text-xs font-serif outline-none transition-colors duration-150 rounded-none backdrop-blur-sm ${isDark ? 'border-zinc-800 focus:border-[#ea0000] text-white bg-black/20' : 'border-zinc-300 focus:border-[#ea0000] text-black bg-white/40'}`}
+                    />
                   </div>
                   
                   <div className="flex flex-col gap-1.5">
-                    <label className={`font-serif text-xs ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>Message</label>
-                    <textarea rows="4" placeholder="Tell me about your project or inquiry..." className={`bg-transparent border p-3 text-xs font-serif outline-none transition-colors duration-150 resize-none rounded-none backdrop-blur-sm ${isDark ? 'border-zinc-800 focus:border-[#ea0000] text-white bg-black/20' : 'border-zinc-300 focus:border-[#ea0000] text-black bg-white/40'}`}></textarea>
+                    <label className={`font-serif text-xs ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>Message *</label>
+                    <textarea
+                      rows="4"
+                      required
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      placeholder="Tell me about your project or inquiry..."
+                      className={`bg-transparent border p-3 text-xs font-serif outline-none transition-colors duration-150 resize-none rounded-none backdrop-blur-sm ${isDark ? 'border-zinc-800 focus:border-[#ea0000] text-white bg-black/20' : 'border-zinc-300 focus:border-[#ea0000] text-black bg-white/40'}`}
+                    ></textarea>
                   </div>
                   
                   <motion.button 
                     type="submit" 
+                    disabled={formStatus === 'submitting'}
                     whileTap={{ scale: 0.98 }}
                     transition={OS5_SPRING}
-                    className={`w-full py-3 font-serif text-sm tracking-wide flex items-center justify-center gap-2 transition-colors duration-150 cursor-pointer ${isDark ? 'bg-white text-black hover:bg-[#ea0000] hover:text-white' : 'bg-black text-white hover:bg-[#ea0000]'}`}
+                    className={`w-full py-3 font-mono text-[11px] font-bold tracking-[0.2em] uppercase flex items-center justify-center gap-2 transition-colors duration-150 cursor-pointer ${
+                      formStatus === 'sent'
+                        ? 'bg-emerald-600 text-white'
+                        : isDark
+                          ? 'bg-white text-black hover:bg-[#ea0000] hover:text-white'
+                          : 'bg-black text-white hover:bg-[#ea0000]'
+                    }`}
                   >
-                    <SendIcon /> Send Message
+                    {formStatus === 'submitting' ? (
+                      <span>TRANSMITTING...</span>
+                    ) : formStatus === 'sent' ? (
+                      <>
+                        <CheckIcon />
+                        <span>[MESSAGE TRANSMITTED]</span>
+                      </>
+                    ) : (
+                      <>
+                        <SendIcon />
+                        <span>Send Message</span>
+                      </>
+                    )}
                   </motion.button>
                 </form>
               </div>
