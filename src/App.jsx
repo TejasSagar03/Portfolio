@@ -1861,93 +1861,97 @@ const App = () => {
           <SectionHeader title="MODULES" index="05" isDark={isDark} />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-9 sm:gap-y-12">
-            {PROJECTS_DATA.map((project, i) => (
-              <motion.div 
-                key={i}
-                initial={{ opacity: 0, y: 18, scale: 0.985 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={SCROLL_REPLAY_VIEWPORT}
-                whileTap={{ scale: 0.99 }}
-                transition={{ duration: 0.48, ease: IOS_OPTICAL_EASE, delay: i * 0.05 }}
-                onClick={() => setSelectedProject(project)}
-                className="group flex flex-col cursor-pointer"
-                onMouseEnter={() => setHoverColorRGB(project.color)}
-                onMouseLeave={() => setHoverColorRGB('234, 0, 0')}
-              >
-                <SpatialTiltFrame className="mb-4 sm:mb-6">
-                  <div className={`aspect-[16/9] relative overflow-hidden flex items-center justify-center border transition-colors duration-150 ${isDark ? 'border-zinc-800 bg-black shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]' : 'border-zinc-300 bg-white'}`}>
-                    
-                    <img src={project.img} alt={project.name} className="w-full h-full object-cover grayscale opacity-70 group-hover:opacity-45 group-hover:grayscale-0 group-hover:scale-105 group-hover:blur-[2px] transition-all duration-500 z-0" />
-                    
-                    <div className="absolute inset-0 bg-black/40 md:bg-transparent md:group-hover:bg-black/50 transition-colors duration-200 z-10" />
+{PROJECTS_DATA.map((project, i) => (
+  <motion.div 
+    key={i}
+    initial={{ opacity: 0, y: 18, scale: 0.985 }}
+    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+    viewport={SCROLL_REPLAY_VIEWPORT}
+    whileTap={{ scale: 0.99 }}
+    transition={{ duration: 0.48, ease: IOS_OPTICAL_EASE, delay: i * 0.05 }}
+    onClick={() => setSelectedProject(project)}
+    className="group flex flex-col cursor-pointer"
+    onMouseEnter={() => setHoverColorRGB(project.color)}
+    onMouseLeave={() => setHoverColorRGB('234, 0, 0')}
+  >
+    <SpatialTiltFrame className="mb-4 sm:mb-6">
+      <div className={`aspect-[16/9] relative overflow-hidden flex items-center justify-center border transition-colors duration-150 ${isDark ? 'border-zinc-800 bg-black shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]' : 'border-zinc-300 bg-white'}`}>
+        
+        <img src={project.img} alt={project.name} className="w-full h-full object-cover grayscale opacity-70 group-hover:opacity-45 group-hover:grayscale-0 group-hover:scale-105 group-hover:blur-[2px] transition-all duration-500 z-0" />
+        
+        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent lg:bg-none lg:group-hover:bg-black/50 transition-colors duration-200 z-10" />
 
-                    <div className={`absolute top-2.5 left-2.5 sm:top-3 sm:left-3 px-2 py-1 font-mono text-[7.5px] sm:text-[8px] font-bold tracking-widest uppercase shadow-xl z-20 ${isDark ? 'bg-white text-black' : 'bg-black text-white'}`}>
-                      {project.id}
-                    </div>
+        {/* TOP LEFT: MODULE ID */}
+        <div className={`absolute top-2.5 left-2.5 sm:top-3 sm:left-3 px-2 py-1 font-mono text-[7.5px] sm:text-[8px] font-bold tracking-widest uppercase shadow-xl z-20 ${isDark ? 'bg-white text-black' : 'bg-black text-white'}`}>
+          {project.id}
+        </div>
 
-                    <div className="absolute top-2.5 right-2.5 sm:top-3 sm:right-3 px-2 sm:px-2.5 py-1 font-mono text-[7.5px] sm:text-[8px] font-bold tracking-widest uppercase bg-black/80 backdrop-blur-md text-white border border-white/15 group-hover:border-[#ea0000] group-hover:bg-[#ea0000] transition-colors z-20 flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#ea0000] group-hover:bg-white animate-pulse" />
-                      <span>DOSSIER +</span>
-                    </div>
-                    
-                    <div
-                      onClick={(e) => e.stopPropagation()}
-                      className="hidden md:flex absolute inset-0 items-center justify-center gap-5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-30"
-                    >
-                      <SocialLink href={project.link} isDark={true}>
-                        <ArrowUpRightIcon />
-                      </SocialLink>
-                      <SocialLink href={project.repo} isDark={true}>
-                        <GithubIcon />
-                      </SocialLink>
-                    </div>
+        {/* TOP RIGHT: DOSSIER BADGE */}
+        <div className="absolute top-2.5 right-2.5 sm:top-3 sm:right-3 px-2 sm:px-2.5 py-1 font-mono text-[7.5px] sm:text-[8px] font-bold tracking-widest uppercase bg-black/80 backdrop-blur-md text-white border border-white/15 group-hover:border-[#ea0000] group-hover:bg-[#ea0000] transition-colors z-20 flex items-center gap-1.5">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#ea0000] group-hover:bg-white animate-pulse" />
+          <span>DOSSIER +</span>
+        </div>
 
-                  </div>
-                </SpatialTiltFrame>
+        {/* MOBILE / TOUCH / TABLET: ALWAYS-VISIBLE 2 ACTION BUTTONS (WEBSITE + CODE) */}
+        <div
+          onClick={(e) => e.stopPropagation()}
+          className="flex lg:hidden [@media(hover:none)]:flex absolute bottom-2.5 right-2.5 sm:bottom-3 sm:right-3 items-center gap-2 z-30"
+        >
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Open ${project.name} live website`}
+            className="h-9 px-2.5 bg-black/85 backdrop-blur-md border border-dotted border-white/30 active:border-[#ea0000] active:bg-[#ea0000] text-white flex items-center gap-1.5 font-mono text-[8px] font-bold tracking-widest uppercase"
+          >
+            <span>LIVE</span>
+            <ArrowUpRightIcon />
+          </a>
+          <a
+            href={project.repo}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`View ${project.name} source code`}
+            className="w-9 h-9 bg-black/85 backdrop-blur-md border border-dotted border-white/30 active:border-[#ea0000] active:bg-[#ea0000] text-white flex items-center justify-center"
+          >
+            <GithubIcon />
+          </a>
+        </div>
+        
+        {/* DESKTOP HOVER OVERLAY (MOUSE ONLY) */}
+        <div
+          onClick={(e) => e.stopPropagation()}
+          className="hidden lg:flex [@media(hover:none)]:hidden absolute inset-0 items-center justify-center gap-5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-30"
+        >
+          <SocialLink href={project.link} isDark={true}>
+            <ArrowUpRightIcon />
+          </SocialLink>
+          <SocialLink href={project.repo} isDark={true}>
+            <GithubIcon />
+          </SocialLink>
+        </div>
 
-                <div className="flex items-center justify-between gap-2 mb-2">
-                  <h3 className="text-lg sm:text-2xl font-light tracking-tight uppercase group-hover:text-[#ea0000] transition-colors duration-150">{project.name}</h3>
-                  <span className="font-mono text-[8px] tracking-widest uppercase opacity-60 group-hover:opacity-100 group-hover:text-[#ea0000] transition-all shrink-0">
-                    SPECS →
-                  </span>
-                </div>
+      </div>
+    </SpatialTiltFrame>
 
-                <p className={`text-xs sm:text-sm font-serif leading-relaxed mb-4 sm:mb-6 flex-grow max-w-md ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>{project.desc}</p>
+    <div className="flex items-center justify-between gap-2 mb-2">
+      <h3 className="text-lg sm:text-2xl font-light tracking-tight uppercase group-hover:text-[#ea0000] transition-colors duration-150">{project.name}</h3>
+      <span className="font-mono text-[8px] tracking-widest uppercase opacity-60 group-hover:opacity-100 group-hover:text-[#ea0000] transition-all shrink-0">
+        SPECS →
+      </span>
+    </div>
 
-                <div className="flex flex-wrap items-center justify-between gap-2 mt-auto">
-                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                    {project.tech.map(t => (
-                      <span key={t} className={`px-2 py-1 text-[7.5px] sm:text-[8px] font-mono font-bold tracking-widest uppercase border ${isDark ? 'bg-[#111] border-zinc-800 text-zinc-300 group-hover:border-[#ea0000] group-hover:text-[#ea0000]' : 'bg-white border-zinc-300 text-zinc-600 group-hover:border-[#ea0000] group-hover:text-[#ea0000]'} transition-colors duration-150`}>
-                        {t}
-                      </span>
-                    ))}
-                  </div>
+    <p className={`text-xs sm:text-sm font-serif leading-relaxed mb-4 sm:mb-6 flex-grow max-w-md ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>{project.desc}</p>
 
-                  <div className="flex md:hidden items-center gap-2" onClick={(e) => e.stopPropagation()}>
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`px-2.5 py-1 text-[7.5px] font-mono font-bold tracking-widest uppercase border border-dotted ${
-                        isDark ? 'border-zinc-700 text-zinc-200 hover:border-[#ea0000]' : 'border-zinc-300 text-zinc-800 hover:border-[#ea0000]'
-                      }`}
-                    >
-                      LIVE ↗
-                    </a>
-                    <a
-                      href={project.repo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`px-2.5 py-1 text-[7.5px] font-mono font-bold tracking-widest uppercase border border-dotted ${
-                        isDark ? 'border-zinc-700 text-zinc-200 hover:border-[#ea0000]' : 'border-zinc-300 text-zinc-800 hover:border-[#ea0000]'
-                      }`}
-                    >
-                      CODE
-                    </a>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+    <div className="flex flex-wrap gap-1.5 sm:gap-2 mt-auto">
+      {project.tech.map(t => (
+        <span key={t} className={`px-2 py-1 text-[7.5px] sm:text-[8px] font-mono font-bold tracking-widest uppercase border ${isDark ? 'bg-[#111] border-zinc-800 text-zinc-300 group-hover:border-[#ea0000] group-hover:text-[#ea0000]' : 'bg-white border-zinc-300 text-zinc-600 group-hover:border-[#ea0000] group-hover:text-[#ea0000]'} transition-colors duration-150`}>
+          {t}
+        </span>
+      ))}
+    </div>
+  </motion.div>
+))}
           </div>
         </FadeSection>
 
