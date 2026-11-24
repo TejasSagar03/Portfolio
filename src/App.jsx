@@ -44,13 +44,12 @@ const SCROLL_REPLAY_VIEWPORT = { once: false, amount: "some" };
 // --- FIXED HARDWARE REGISTRATION BRACKETS (VISIBLE ON ALL 4 EDGES + CLEAN ROTATION) ---
 const HardwareRegistrationBrackets = ({ isDark, size = "lg" }) => {
   const isLarge = size === "lg";
-  const svgDim = isLarge ? "w-14 h-14" : "w-11 h-11";
-  const topOffset = isLarge ? "-top-3.5 -left-3.5" : "-top-3 -left-3";
-  const bottomOffset = isLarge ? "-bottom-3.5 -right-3.5" : "-bottom-3 -right-3";
+  const svgDim = isLarge ? "w-11 h-11 sm:w-14 sm:h-14" : "w-9 h-9 sm:w-11 sm:h-11";
+  const topOffset = isLarge ? "-top-2.5 -left-2.5 sm:-top-3.5 sm:-left-3.5" : "-top-2 -left-2 sm:-top-3 sm:-left-3";
+  const bottomOffset = isLarge ? "-bottom-2.5 -right-2.5 sm:-bottom-3.5 sm:-right-3.5" : "-bottom-2 -right-2 sm:-bottom-3 sm:-right-3";
 
   return (
     <>
-      {/* Top-Left Bracket */}
       <motion.svg
         initial={{ opacity: 0, x: -6, y: -6 }}
         whileInView={{ opacity: 1, x: 0, y: 0 }}
@@ -81,7 +80,6 @@ const HardwareRegistrationBrackets = ({ isDark, size = "lg" }) => {
         {isLarge && <circle cx="4" cy="60" r="1.8" fill="currentColor" />}
       </motion.svg>
 
-      {/* Bottom-Right Bracket */}
       <motion.svg
         initial={{ opacity: 0, x: 6, y: 6 }}
         whileInView={{ opacity: 1, x: 0, y: 0 }}
@@ -131,14 +129,11 @@ const HeroScrollTelemetryBar = ({ isDark, smoothProgress }) => {
       whileInView={{ opacity: 1, x: 0 }}
       viewport={SCROLL_REPLAY_VIEWPORT}
       transition={{ duration: 0.5, ease: IOS_SHEET_EASE }}
-      className="absolute -right-14 bottom-6 hidden md:flex flex-col items-center gap-2.5 z-20 pointer-events-none select-none"
+      className="absolute -right-11 xl:-right-14 bottom-6 hidden lg:flex flex-col items-center gap-2.5 z-20 pointer-events-none select-none"
     >
-      {/* Top Optical Node */}
       <span className="w-1.5 h-1.5 rounded-full bg-[#ea0000] shadow-[0_0_8px_#ea0000] animate-pulse" />
 
-      {/* Main Precision Glyph Housing + Side Ruler Ticks */}
       <div className="flex items-center gap-1.5">
-        {/* Left Micro-Graduations */}
         <div className="flex flex-col justify-between h-16 py-1 opacity-40">
           {[0, 1, 2, 3, 4].map((tick) => (
             <span
@@ -150,7 +145,6 @@ const HeroScrollTelemetryBar = ({ isDark, smoothProgress }) => {
           ))}
         </div>
 
-        {/* Kinetic Glass Capsule */}
         <div
           className={`relative w-3 h-16 rounded-[2px] border border-dotted backdrop-blur-md overflow-hidden p-[2px] ${
             isDark
@@ -158,10 +152,8 @@ const HeroScrollTelemetryBar = ({ isDark, smoothProgress }) => {
               : 'border-zinc-400 bg-white/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]'
           }`}
         >
-          {/* Center Hairline Guide */}
           <div className={`absolute inset-y-1 left-1/2 -translate-x-1/2 w-[1px] ${isDark ? 'bg-zinc-800' : 'bg-zinc-200'}`} />
 
-          {/* Continuous Up-and-Down Kinetic Red Slug */}
           <motion.div
             animate={{
               y: [0, 42, 0],
@@ -174,13 +166,11 @@ const HeroScrollTelemetryBar = ({ isDark, smoothProgress }) => {
             }}
             className="relative z-10 w-full h-3.5 rounded-[1px] bg-gradient-to-b from-[#ff3b3b] via-[#ea0000] to-[#990000] shadow-[0_0_12px_#ea0000]"
           >
-            {/* Specular White Core Dot */}
             <span className="block w-1 h-1 mx-auto mt-[2px] rounded-full bg-white/90" />
           </motion.div>
         </div>
       </div>
 
-      {/* Live Telemetry Counter */}
       <span className={`font-mono text-[7.5px] font-bold tracking-[0.2em] ${isDark ? 'text-zinc-500' : 'text-zinc-500'}`}>
         {String(scrollPct).padStart(2, '0')}%
       </span>
@@ -338,7 +328,7 @@ const GlyphEqualizerBadge = ({ isDark, onTriggerPulse }) => {
       whileTap={{ scale: 0.965 }}
       transition={{ duration: 0.14, ease: NOTHING_DETENT_EASE }}
       aria-label="Toggle Glyph Matrix"
-      className={`group inline-flex items-center gap-3.5 px-3.5 py-2 rounded-[3px] border border-dotted backdrop-blur-xl mb-7 cursor-pointer transition-colors duration-200 ${
+      className={`group inline-flex items-center gap-3 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-[3px] border border-dotted backdrop-blur-xl mb-5 sm:mb-7 cursor-pointer transition-colors duration-200 ${
         isDark
           ? 'bg-white/[0.025] border-zinc-800 hover:border-[#ea0000]/60 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]'
           : 'bg-black/[0.025] border-zinc-300 hover:border-[#ea0000]/60 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]'
@@ -383,7 +373,7 @@ const GlyphEqualizerBadge = ({ isDark, onTriggerPulse }) => {
 
       <span className="opacity-25 text-[8px] font-mono">//</span>
 
-      <span className={`font-mono text-[8px] font-bold tracking-[0.26em] uppercase ${isDark ? 'text-zinc-400 group-hover:text-white' : 'text-zinc-600 group-hover:text-black'} transition-colors`}>
+      <span className={`font-mono text-[8px] font-bold tracking-[0.22em] sm:tracking-[0.26em] uppercase ${isDark ? 'text-zinc-400 group-hover:text-white' : 'text-zinc-600 group-hover:text-black'} transition-colors`}>
         GLYPH.05
       </span>
     </motion.button>
@@ -395,13 +385,13 @@ const SectionHeader = ({ title, index, isDark }) => {
   const chars = Array.from(title);
 
   return (
-    <div className="flex flex-col items-center mb-16 text-center">
+    <div className="flex flex-col items-center mb-10 sm:mb-16 text-center">
       <motion.div
-        initial={{ opacity: 0, letterSpacing: "0.16em" }}
-        whileInView={{ opacity: 1, letterSpacing: "0.32em" }}
+        initial={{ opacity: 0, letterSpacing: "0.14em" }}
+        whileInView={{ opacity: 1, letterSpacing: "0.28em" }}
         viewport={SCROLL_REPLAY_VIEWPORT}
         transition={{ duration: 0.48, ease: IOS_OPTICAL_EASE }}
-        className="flex items-center gap-2 mb-3"
+        className="flex items-center gap-2 mb-2.5 sm:mb-3"
       >
         <motion.span
           initial={{ scale: 0 }}
@@ -415,10 +405,10 @@ const SectionHeader = ({ title, index, isDark }) => {
         </span>
       </motion.div>
 
-      <div className="overflow-hidden mb-4 py-1">
+      <div className="overflow-hidden mb-3 sm:mb-4 py-1 max-w-full">
         <h2
           aria-label={title}
-          className="font-nothing text-3xl md:text-5xl tracking-widest uppercase text-current"
+          className="font-nothing text-2xl sm:text-3xl md:text-5xl tracking-[0.12em] sm:tracking-widest uppercase text-current"
         >
           {chars.map((char, idx) => (
             <motion.span
@@ -786,10 +776,10 @@ const BootSequence = ({ setBooted }) => {
           scale: splitting ? 1.05 : 1
         }}
         transition={{ duration: 0.28, ease: IOS_OPTICAL_EASE }}
-        className="relative w-full h-full flex flex-col justify-between items-center py-12 px-6"
+        className="relative w-full h-full flex flex-col justify-between items-center py-10 sm:py-12 px-4 sm:px-6"
       >
         <canvas ref={canvasRef} className="absolute inset-0" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[480px] h-[220px] rounded-full bg-[#ea0000]/15 blur-[110px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] sm:w-[480px] h-[200px] sm:h-[220px] rounded-full bg-[#ea0000]/15 blur-[110px]" />
 
         <div className="relative z-10 flex items-center gap-3 text-[9px] font-mono tracking-[0.35em] pl-[0.35em] uppercase text-zinc-500">
           <span>TSK</span>
@@ -799,14 +789,14 @@ const BootSequence = ({ setBooted }) => {
 
         <div className="relative z-10 flex flex-col items-center">
           <div className="relative flex items-center justify-center mb-6">
-            <div className="flex items-center gap-4 md:gap-5 overflow-hidden py-1">
+            <div className="flex items-center gap-3 sm:gap-5 overflow-hidden py-1">
               {['T', 'S', 'K'].map((char, i) => (
                 <motion.span
                   key={char}
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.42, ease: IOS_SHEET_EASE, delay: i * 0.06 }}
-                  className="font-nothing text-6xl md:text-8xl leading-none text-white drop-shadow-[0_0_25px_rgba(255,255,255,0.2)]"
+                  className="font-nothing text-5xl sm:text-6xl md:text-8xl leading-none text-white drop-shadow-[0_0_25px_rgba(255,255,255,0.2)]"
                 >
                   {char}
                 </motion.span>
@@ -816,11 +806,11 @@ const BootSequence = ({ setBooted }) => {
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: [0.6, 1, 0.6], scale: 1 }}
               transition={{ opacity: { duration: 1.4, repeat: Infinity, ease: 'easeInOut' }, scale: { duration: 0.3 } }}
-              className="ml-3 md:ml-4 mt-7 md:mt-10 w-3 h-3 rounded-full bg-[#ea0000] shadow-[0_0_20px_#ea0000]"
+              className="ml-2.5 sm:ml-4 mt-6 sm:mt-10 w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#ea0000] shadow-[0_0_20px_#ea0000]"
             />
           </div>
 
-          <div className="w-56 md:w-72 h-[2px] bg-zinc-900 overflow-hidden mb-4 relative">
+          <div className="w-48 sm:w-72 h-[2px] bg-zinc-900 overflow-hidden mb-4 relative">
             <motion.div
               className="h-full bg-gradient-to-r from-white via-white to-[#ea0000] shadow-[0_0_12px_#ea0000]"
               initial={{ width: '0%' }}
@@ -844,7 +834,7 @@ const BootSequence = ({ setBooted }) => {
 
 // --- BIDIRECTIONAL ANIMATED SECTION ---
 const FadeSection = ({ children, id, className, isDark }) => (
-  <section id={id} className={`scroll-mt-24 py-24 px-6 border-b ${isDark ? 'border-zinc-800' : 'border-zinc-200'} ${className || ''}`}>
+  <section id={id} className={`scroll-mt-20 sm:scroll-mt-24 py-14 sm:py-24 px-4 sm:px-6 border-b ${isDark ? 'border-zinc-800' : 'border-zinc-200'} ${className || ''}`}>
     <motion.div 
       initial={{ opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -866,7 +856,7 @@ const SocialLink = ({ href, children, isDark, isMail, onClick }) => (
     whileHover="hover"
     whileTap="tap"
     transition={{ duration: 0.14, ease: NOTHING_DETENT_EASE }}
-    className={`group relative w-12 h-12 flex items-center justify-center border border-dotted backdrop-blur-md transition-colors duration-150 ${
+    className={`group relative w-11 h-11 sm:w-12 sm:h-12 flex items-center justify-center border border-dotted backdrop-blur-md transition-colors duration-150 ${
       isDark 
         ? 'border-zinc-600 bg-white/[0.02] hover:border-[#ea0000] hover:bg-[#ea0000]/10 text-zinc-300 hover:text-[#ea0000] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]' 
         : 'border-zinc-400 bg-black/[0.02] hover:border-[#ea0000] hover:bg-[#ea0000]/10 text-zinc-600 hover:text-[#ea0000] shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]'
@@ -952,13 +942,12 @@ const ProjectCaseStudyDrawer = ({ project, onClose, onSelectProject, isDark }) =
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ duration: 0.46, ease: IOS_SHEET_EASE }}
-            className={`relative z-10 w-full max-w-xl h-full overflow-y-auto border-l p-6 md:p-9 flex flex-col justify-between backdrop-blur-3xl shadow-2xl ${
+            className={`relative z-10 w-full max-w-xl h-full overflow-y-auto border-l p-4 sm:p-6 md:p-9 flex flex-col justify-between backdrop-blur-3xl shadow-2xl ${
               isDark
                 ? 'bg-zinc-950/90 border-zinc-800/90 text-white shadow-black'
                 : 'bg-white/95 border-zinc-300 text-black shadow-zinc-400/40'
             }`}
           >
-            {/* Top Drawer Scroll Telemetry Hairline */}
             <motion.div
               style={{ scaleX: smoothDrawerProgress, transformOrigin: '0%' }}
               className="fixed top-0 right-0 w-full max-w-xl h-[2px] bg-[#ea0000] z-50 pointer-events-none shadow-[0_0_10px_#ea0000]"
@@ -978,22 +967,21 @@ const ProjectCaseStudyDrawer = ({ project, onClose, onSelectProject, isDark }) =
             />
 
             <div className="relative z-10">
-              {/* Top Hardware Telemetry Bar with Prev / Next Module Switcher */}
-              <div className={`flex items-center justify-between pb-4 mb-6 border-b border-dotted ${isDark ? 'border-zinc-800' : 'border-zinc-300'}`}>
-                <div className="flex items-center gap-2.5">
+              <div className={`flex items-center justify-between gap-2 pb-4 mb-5 sm:mb-6 border-b border-dotted ${isDark ? 'border-zinc-800' : 'border-zinc-300'}`}>
+                <div className="flex items-center gap-2 min-w-0">
                   <span
                     style={{
                       backgroundColor: `rgb(${project.color})`,
                       boxShadow: `0 0 10px rgba(${project.color}, 0.8)`
                     }}
-                    className="w-2 h-2 rounded-full animate-pulse"
+                    className="w-2 h-2 rounded-full animate-pulse shrink-0"
                   />
-                  <span className="font-mono text-[9px] font-bold tracking-[0.25em] uppercase">
-                    {project.id} // SYSTEM DOSSIER
+                  <span className="font-mono text-[8.5px] sm:text-[9px] font-bold tracking-[0.2em] sm:tracking-[0.25em] uppercase truncate">
+                    {project.id} // DOSSIER
                   </span>
                 </div>
 
-                <div className="flex items-center gap-1.5">
+                <div className="flex items-center gap-1.5 shrink-0">
                   <motion.button
                     type="button"
                     whileTap={{ scale: 0.92 }}
@@ -1027,7 +1015,7 @@ const ProjectCaseStudyDrawer = ({ project, onClose, onSelectProject, isDark }) =
                     transition={{ duration: 0.14, ease: NOTHING_DETENT_EASE }}
                     onClick={onClose}
                     aria-label="Close case study"
-                    className={`ml-1 p-2 rounded-[2px] border border-dotted transition-colors cursor-pointer ${
+                    className={`ml-0.5 sm:ml-1 p-2 rounded-[2px] border border-dotted transition-colors cursor-pointer ${
                       isDark
                         ? 'border-zinc-700 bg-black/50 hover:border-[#ea0000] hover:text-[#ea0000]'
                         : 'border-zinc-400 bg-white/60 hover:border-[#ea0000] hover:text-[#ea0000]'
@@ -1038,7 +1026,6 @@ const ProjectCaseStudyDrawer = ({ project, onClose, onSelectProject, isDark }) =
                 </div>
               </div>
 
-              {/* Animated Module Switch Content */}
               <AnimatePresence mode="wait">
                 <motion.div
                   key={project.id}
@@ -1047,7 +1034,6 @@ const ProjectCaseStudyDrawer = ({ project, onClose, onSelectProject, isDark }) =
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.3, ease: IOS_SHEET_EASE }}
                 >
-                  {/* Framed Preview Banner with Corner Registration Marks */}
                   <div className={`relative p-2 border mb-5 ${isDark ? 'border-zinc-800 bg-black/60' : 'border-zinc-300 bg-white/70'}`}>
                     <span className="absolute -top-[1px] -left-[1px] w-2.5 h-2.5 border-t-[1.5px] border-l-[1.5px] border-[#ea0000]" />
                     <span className="absolute -top-[1px] -right-[1px] w-2.5 h-2.5 border-t-[1.5px] border-r-[1.5px] border-[#ea0000]" />
@@ -1064,11 +1050,11 @@ const ProjectCaseStudyDrawer = ({ project, onClose, onSelectProject, isDark }) =
                         className="w-full h-full object-cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
-                      <div className="absolute bottom-3 left-3 flex flex-wrap gap-1.5">
+                      <div className="absolute bottom-2.5 left-2.5 right-2.5 flex flex-wrap gap-1.5">
                         {project.tech.map((t) => (
                           <span
                             key={t}
-                            className="px-2.5 py-1 rounded-[2px] text-[8px] font-mono font-bold tracking-widest uppercase bg-black/80 backdrop-blur-md text-white border border-white/15"
+                            className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-[2px] text-[8px] font-mono font-bold tracking-widest uppercase bg-black/80 backdrop-blur-md text-white border border-white/15"
                           >
                             {t}
                           </span>
@@ -1077,8 +1063,7 @@ const ProjectCaseStudyDrawer = ({ project, onClose, onSelectProject, isDark }) =
                     </div>
                   </div>
 
-                  {/* Hardware Telemetry Metrics Strip */}
-                  <div className="grid grid-cols-3 gap-2.5 mb-6">
+                  <div className="grid grid-cols-1 xs:grid-cols-3 sm:grid-cols-3 gap-2 sm:gap-2.5 mb-6">
                     {project.metrics.map((m, idx) => (
                       <motion.div
                         key={m.label}
@@ -1089,15 +1074,14 @@ const ProjectCaseStudyDrawer = ({ project, onClose, onSelectProject, isDark }) =
                           isDark ? 'border-zinc-800 bg-white/[0.02]' : 'border-zinc-300 bg-black/[0.02]'
                         }`}
                       >
-                        <p className="font-mono text-[7px] tracking-[0.22em] uppercase opacity-50 mb-1">{m.label}</p>
-                        <p className="font-mono text-[9.5px] font-bold tracking-wider uppercase text-[#ea0000]">{m.value}</p>
+                        <p className="font-mono text-[7px] tracking-[0.2em] uppercase opacity-50 mb-1">{m.label}</p>
+                        <p className="font-mono text-[9px] sm:text-[9.5px] font-bold tracking-wider uppercase text-[#ea0000]">{m.value}</p>
                       </motion.div>
                     ))}
                   </div>
 
-                  {/* Title & Summary */}
                   <div className="mb-6">
-                    <h2 className="font-nothing text-2xl sm:text-3xl leading-[1.25] tracking-[0.14em] uppercase mb-3">
+                    <h2 className="font-nothing text-xl sm:text-3xl leading-[1.25] tracking-[0.12em] sm:tracking-[0.14em] uppercase mb-3">
                       {project.name}<span className="text-[#ea0000]">.</span>
                     </h2>
                     <p className={`text-xs md:text-sm font-serif leading-relaxed ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
@@ -1105,13 +1089,12 @@ const ProjectCaseStudyDrawer = ({ project, onClose, onSelectProject, isDark }) =
                     </p>
                   </div>
 
-                  {/* Interactive Dossier Section Filter Bar */}
-                  <div className={`flex items-center gap-1 p-1 rounded-[3px] border border-dotted mb-5 ${isDark ? 'border-zinc-800 bg-black/50' : 'border-zinc-300 bg-zinc-100/80'}`}>
+                  <div className={`grid grid-cols-2 sm:grid-cols-4 gap-1 p-1 rounded-[3px] border border-dotted mb-5 ${isDark ? 'border-zinc-800 bg-black/50' : 'border-zinc-300 bg-zinc-100/80'}`}>
                     {[
                       { id: 'ALL', label: 'ALL SPECS' },
                       { id: 'PROBLEM', label: '01 PROBLEM' },
                       { id: 'ARCH', label: '02 ARCH' },
-                      { id: 'CHALLENGES', label: '03 CHALLENGES' }
+                      { id: 'CHALLENGES', label: '03 ISSUES' }
                     ].map((tab) => {
                       const active = activeTab === tab.id;
                       return (
@@ -1119,7 +1102,7 @@ const ProjectCaseStudyDrawer = ({ project, onClose, onSelectProject, isDark }) =
                           key={tab.id}
                           type="button"
                           onClick={() => setActiveTab(tab.id)}
-                          className={`relative flex-1 py-1.5 px-2 font-mono text-[8px] font-bold tracking-[0.16em] uppercase transition-colors cursor-pointer ${
+                          className={`relative py-2 px-2 font-mono text-[8px] font-bold tracking-[0.14em] uppercase transition-colors cursor-pointer ${
                             active ? (isDark ? 'text-white' : 'text-black') : 'opacity-55 hover:opacity-100'
                           }`}
                         >
@@ -1138,7 +1121,6 @@ const ProjectCaseStudyDrawer = ({ project, onClose, onSelectProject, isDark }) =
                     })}
                   </div>
 
-                  {/* Interactive Breakdown Cards */}
                   <div className="space-y-3.5">
                     {filteredBlocks.map((block, idx) => (
                       <motion.div
@@ -1155,7 +1137,7 @@ const ProjectCaseStudyDrawer = ({ project, onClose, onSelectProject, isDark }) =
                         }`}
                       >
                         <div className="absolute left-0 top-3 bottom-3 w-[2px] bg-[#ea0000] scale-y-0 group-hover:scale-y-100 transition-transform duration-200 origin-top" />
-                        <h4 className="font-mono text-[8.5px] font-bold tracking-[0.25em] uppercase text-[#ea0000] mb-2 flex items-center gap-2">
+                        <h4 className="font-mono text-[8.5px] font-bold tracking-[0.22em] sm:tracking-[0.25em] uppercase text-[#ea0000] mb-2 flex items-center gap-2">
                           <span className="w-1.5 h-1.5 rounded-full bg-[#ea0000]" />
                           <span>{block.code}</span>
                         </h4>
@@ -1169,8 +1151,7 @@ const ProjectCaseStudyDrawer = ({ project, onClose, onSelectProject, isDark }) =
               </AnimatePresence>
             </div>
 
-            {/* Action Footer */}
-            <div className={`relative z-10 mt-8 pt-5 border-t border-dotted flex flex-col sm:flex-row gap-3 ${isDark ? 'border-zinc-800' : 'border-zinc-300'}`}>
+            <div className={`relative z-10 mt-7 pt-5 border-t border-dotted flex flex-col sm:flex-row gap-3 ${isDark ? 'border-zinc-800' : 'border-zinc-300'}`}>
               <motion.a
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.12, ease: NOTHING_DETENT_EASE }}
@@ -1213,8 +1194,8 @@ const NAV_ITEMS = [
   { id: 'about', label: 'About', dotColor: '#22c55e' },
   { id: 'certs', label: 'Certs', dotColor: '#3b82f6' },
   { id: 'skills', label: 'Skills', dotColor: '#eab308' },
-  { id: 'experience', label: 'Experience', dotColor: '#ea0000' },
-  { id: 'projects', label: 'Projects', dotColor: '#ea0000' },
+  { id: 'experience', label: 'Exp', dotColor: '#ea0000' },
+  { id: 'projects', label: 'Work', dotColor: '#ea0000' },
   { id: 'contact', label: 'Contact', dotColor: '#22c55e' }
 ];
 
@@ -1353,7 +1334,7 @@ const App = () => {
         backgroundColor: isDark ? '#000000' : '#ffffff',
         color: isDark ? '#ffffff' : '#000000'
       }}
-      className={`relative min-h-screen overflow-x-hidden transition-colors duration-500 selection:bg-[#ea0000] selection:text-white ${isDark ? 'text-white bg-black' : 'text-black bg-white'}`}
+      className={`relative min-h-screen overflow-x-clip transition-colors duration-500 selection:bg-[#ea0000] selection:text-white ${isDark ? 'text-white bg-black' : 'text-black bg-white'}`}
     >
       <style dangerouslySetInnerHTML={{__html: `
         ::-webkit-scrollbar { width: 6px; }
@@ -1375,7 +1356,7 @@ const App = () => {
 
       <CanvasDotGrid isDark={isDark} hoverColorRGB={hoverColorRGB} />
 
-      <div className="fixed bottom-6 left-0 w-full z-[95] flex justify-center px-4 pointer-events-none">
+      <div className="fixed bottom-4 sm:bottom-6 left-0 w-full z-[95] flex justify-center px-3 sm:px-4 pointer-events-none">
         <AnimatePresence>
           {toastMessage && (
             <motion.div
@@ -1383,14 +1364,14 @@ const App = () => {
               animate={{ opacity: 1, scaleX: 1, scaleY: 1 }}
               exit={{ opacity: 0, scaleX: 0.85, scaleY: 0.9 }}
               transition={{ duration: 0.3, ease: IOS_SHEET_EASE }}
-              className={`pointer-events-auto px-5 py-2.5 rounded-full border backdrop-blur-2xl shadow-2xl flex items-center gap-2.5 text-[9px] font-mono font-bold tracking-[0.22em] uppercase ${
+              className={`pointer-events-auto max-w-full px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border backdrop-blur-2xl shadow-2xl flex items-center gap-2 text-[8px] sm:text-[9px] font-mono font-bold tracking-[0.16em] sm:tracking-[0.22em] uppercase ${
                 isDark
                   ? 'bg-zinc-950/90 border-zinc-700/80 text-white shadow-black shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]'
                   : 'bg-white/95 border-zinc-300 text-black shadow-zinc-400/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]'
               }`}
             >
-              <span className="w-2 h-2 rounded-full bg-[#ea0000] animate-pulse" />
-              <span>[{toastMessage}]</span>
+              <span className="w-2 h-2 rounded-full bg-[#ea0000] animate-pulse shrink-0" />
+              <span className="truncate">[{toastMessage}]</span>
             </motion.div>
           )}
         </AnimatePresence>
@@ -1409,35 +1390,35 @@ const App = () => {
           opacity: selectedProject ? 0.72 : 1
         }}
         transition={{ duration: 0.44, ease: IOS_SHEET_EASE }}
-        className="relative z-10 flex flex-col font-sans w-full max-w-full overflow-x-clip origin-top"
+        className="relative z-10 flex flex-col font-sans w-full max-w-full origin-top"
       >
         
         {/* --- FLOATING NOTHING OS 5.0 x iOS LUCENT DOCK --- */}
-        <header className="fixed top-4 md:top-5 left-0 w-full z-50 px-3 md:px-4 pointer-events-none">
+        <header className="fixed top-3 sm:top-5 left-0 w-full z-50 px-2.5 sm:px-4 pointer-events-none">
           <motion.nav 
             initial={{ opacity: 0, scale: 0.97 }}
             animate={{ opacity: booted ? 1 : 0, scale: booted ? 1 : 0.97 }}
             transition={{ duration: 0.42, ease: IOS_OPTICAL_EASE }}
-            className={`pointer-events-auto max-w-[740px] mx-auto pl-3.5 md:pl-4 pr-2 h-11 rounded-[4px] flex items-center justify-between gap-2 backdrop-blur-2xl border shadow-2xl transition-colors duration-300 ${
+            className={`pointer-events-auto max-w-[740px] mx-auto pl-2.5 sm:pl-4 pr-1.5 sm:pr-2 min-h-10 sm:h-11 py-1 sm:py-0 rounded-[4px] flex flex-wrap sm:flex-nowrap items-center justify-between gap-1.5 sm:gap-2 backdrop-blur-2xl border shadow-2xl transition-colors duration-300 ${
               isDark 
-                ? 'bg-zinc-950/80 border-zinc-800/90 shadow-black/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.09)] text-white' 
-                : 'bg-white/85 border-zinc-300 shadow-zinc-300/50 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] text-black'
+                ? 'bg-zinc-950/85 border-zinc-800/90 shadow-black/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.09)] text-white' 
+                : 'bg-white/90 border-zinc-300 shadow-zinc-300/50 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] text-black'
             }`}
           >
-            <a href="#" className="flex items-center shrink-0 group pr-2.5 md:pr-3 border-r border-dotted border-zinc-700/60 h-6">
-              <span className="font-nothing text-base md:text-lg tracking-widest mt-0.5 group-hover:text-[#ea0000] transition-colors duration-150">
+            <a href="#" className="flex items-center shrink-0 group pr-2 sm:pr-3 border-r border-dotted border-zinc-700/60 h-5 sm:h-6">
+              <span className="font-nothing text-sm sm:text-lg tracking-widest group-hover:text-[#ea0000] transition-colors duration-150">
                 TSK
               </span>
             </a>
             
-            <div className={`flex items-center gap-1 overflow-x-auto no-scrollbar text-[8px] md:text-[9px] font-bold tracking-[0.14em] md:tracking-[0.18em] uppercase ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
+            <div className={`flex items-center justify-around sm:justify-start flex-1 gap-0.5 sm:gap-1 text-[7.5px] sm:text-[9px] font-bold tracking-[0.08em] sm:tracking-[0.18em] uppercase ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
               {NAV_ITEMS.map((item) => {
                 const isActive = activeSection === item.id;
                 return (
                   <a
                     key={item.id}
                     href={`#${item.id}`}
-                    className={`relative px-2 md:px-3 py-1.5 rounded-[2px] flex items-center gap-1.5 shrink-0 transition-colors duration-150 ${
+                    className={`relative px-1.5 sm:px-3 py-1 rounded-[2px] flex items-center gap-1 shrink-0 transition-colors duration-150 ${
                       isActive 
                         ? (isDark ? 'text-white' : 'text-black') 
                         : (isDark ? 'hover:text-zinc-200' : 'hover:text-zinc-900')
@@ -1456,7 +1437,7 @@ const App = () => {
                     )}
                     <span
                       style={{ backgroundColor: isActive ? item.dotColor : 'transparent' }}
-                      className={`w-1.5 h-1.5 rounded-full shrink-0 transition-all duration-150 ${
+                      className={`hidden sm:inline-block w-1.5 h-1.5 rounded-full shrink-0 transition-all duration-150 ${
                         isActive ? 'scale-100 opacity-100' : 'scale-0 opacity-0 w-0'
                       }`}
                     />
@@ -1470,20 +1451,20 @@ const App = () => {
               type="button"
               onClick={() => setIsDark(prev => !prev)} 
               aria-label="Toggle theme"
-              className={`relative shrink-0 w-12 h-6 rounded-[2px] border flex items-center transition-colors duration-200 cursor-pointer touch-manipulation overflow-hidden p-0.5 ${
+              className={`relative shrink-0 w-10 sm:w-12 h-5.5 sm:h-6 rounded-[2px] border flex items-center transition-colors duration-200 cursor-pointer touch-manipulation overflow-hidden p-0.5 ${
                 isDark ? 'border-zinc-700 bg-black' : 'border-zinc-300 bg-zinc-100'
               }`}
             >
-              <div className="absolute inset-0 flex justify-between items-center px-1.5 text-[7px] font-mono tracking-wider font-bold pointer-events-none">
+              <div className="absolute inset-0 flex justify-between items-center px-1 sm:px-1.5 text-[6.5px] sm:text-[7px] font-mono tracking-wider font-bold pointer-events-none">
                 <span className={isDark ? 'text-zinc-600' : 'text-black'}>LT</span>
                 <span className={isDark ? 'text-zinc-300' : 'text-zinc-400'}>DK</span>
               </div>
               <motion.div 
                 layout 
                 initial={false} 
-                animate={{ x: isDark ? 22 : 0 }} 
+                animate={{ x: isDark ? 18 : 0 }} 
                 transition={NOTHING_LAYOUT_SPRING} 
-                className={`w-5 h-4.5 rounded-[1px] relative z-10 flex items-center justify-center shadow-sm ${isDark ? 'bg-white' : 'bg-black'}`}
+                className={`w-4 sm:w-5 h-4 sm:h-4.5 rounded-[1px] relative z-10 flex items-center justify-center shadow-sm ${isDark ? 'bg-white' : 'bg-black'}`}
               >
                 <div className={`w-[1.5px] h-2 ${isDark ? 'bg-black' : 'bg-white'}`} />
               </motion.div>
@@ -1492,23 +1473,23 @@ const App = () => {
         </header>
 
         {/* --- HERO SECTION --- */}
-        <section className={`pt-32 pb-16 min-h-[85vh] flex flex-col justify-center border-b relative ${isDark ? 'border-zinc-800' : 'border-zinc-200'}`}>
-          <div className="max-w-[1100px] mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center relative z-10">
+        <section className={`pt-24 sm:pt-32 pb-12 sm:pb-16 min-h-[82vh] sm:min-h-[85vh] flex flex-col justify-center border-b relative ${isDark ? 'border-zinc-800' : 'border-zinc-200'}`}>
+          <div className="max-w-[1100px] mx-auto px-4 sm:px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-16 items-center relative z-10">
             
-            {/* Left: Portrait with Fixed 4-Corner Brackets, Kinetic Glyph Depth Strip, Parallax & Spatial Tilt */}
-            <div className="lg:col-span-5 relative group order-2 lg:order-1 flex justify-center lg:justify-start">
+            {/* Portrait First on Mobile so Identity + Visual Anchor Immediately */}
+            <div className="lg:col-span-5 relative group order-1 flex justify-center lg:justify-start">
               <motion.div 
                 style={{ y: heroParallaxY }}
                 initial={{ opacity: 0, y: 18 }} 
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={SCROLL_REPLAY_VIEWPORT}
                 transition={{ duration: 0.55, ease: IOS_SHEET_EASE }}
-                className="w-full max-w-[320px] relative group mt-6 lg:mt-0"
+                className="w-full max-w-[230px] sm:max-w-[320px] relative group"
               >
                 <HardwareRegistrationBrackets isDark={isDark} size="lg" />
 
                 <SpatialTiltFrame>
-                  <div className={`relative p-2.5 md:p-3 border shadow-2xl transition-colors duration-300 ${isDark ? 'border-zinc-800 group-hover:border-zinc-700 bg-black shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]' : 'border-zinc-200 group-hover:border-zinc-400 bg-white'} z-10`}>
+                  <div className={`relative p-2 sm:p-3 border shadow-2xl transition-colors duration-300 ${isDark ? 'border-zinc-800 group-hover:border-zinc-700 bg-black shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]' : 'border-zinc-200 group-hover:border-zinc-400 bg-white'} z-10`}>
                     <div className={`border border-dotted ${isDark ? 'border-zinc-700 group-hover:border-[#ea0000]/60' : 'border-zinc-300 group-hover:border-[#ea0000]/60'} p-1 transition-colors duration-300`}>
                       <div className={`aspect-[3/4] relative overflow-hidden ${isDark ? 'bg-black' : 'bg-zinc-100'}`}>
                         <img 
@@ -1527,43 +1508,43 @@ const App = () => {
             </div>
 
             {/* Right: Bidirectional Staggered Apple System Cascade */}
-            <div className="lg:col-span-7 flex flex-col order-1 lg:order-2 relative">
-              <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[450px] aspect-square rounded-full border ${isDark ? 'border-white/5' : 'border-black/5'} -z-10 pointer-events-none`} />
+            <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left order-2 relative">
+              <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[260px] sm:w-[450px] aspect-square rounded-full border ${isDark ? 'border-white/5' : 'border-black/5'} -z-10 pointer-events-none`} />
 
               <motion.div 
                 variants={HERO_STAGGER}
                 initial="hidden"
                 whileInView="visible"
                 viewport={SCROLL_REPLAY_VIEWPORT}
-                className="w-full"
+                className="w-full flex flex-col items-center lg:items-start"
               >
                 <motion.div variants={HERO_ITEM}>
                   <GlyphEqualizerBadge isDark={isDark} onTriggerPulse={showToast} />
                 </motion.div>
 
-                <div className="flex flex-col gap-4 md:gap-6 w-full mb-8 z-10 relative">
+                <div className="flex flex-col gap-2 sm:gap-4 md:gap-6 w-full mb-5 sm:mb-8 z-10 relative">
                   <AnimatedDotTitle
                     text="TEJAS"
                     delayOffset={0.04}
-                    className="text-[clamp(1.8rem,4.5vw,4.5rem)] font-nothing tracking-[0.15em] leading-[1.15] uppercase text-current whitespace-nowrap block"
+                    className="text-[clamp(1.75rem,7vw,4.5rem)] font-nothing tracking-[0.12em] sm:tracking-[0.15em] leading-[1.15] uppercase text-current block"
                   />
                   <AnimatedDotTitle
                     text="SAGAR K"
                     hasRedDot={true}
                     delayOffset={0.18}
-                    className="text-[clamp(1.8rem,4.5vw,4.5rem)] font-nothing tracking-[0.15em] leading-[1.15] uppercase text-current whitespace-nowrap block"
+                    className="text-[clamp(1.75rem,7vw,4.5rem)] font-nothing tracking-[0.12em] sm:tracking-[0.15em] leading-[1.15] uppercase text-current block"
                   />
                 </div>
                 
-                <motion.h4 variants={HERO_ITEM} className={`text-[10px] md:text-xs font-mono tracking-widest uppercase mb-6 pb-6 border-b ${isDark ? 'text-zinc-600 border-zinc-800' : 'text-zinc-500 border-zinc-200'}`}>
+                <motion.h4 variants={HERO_ITEM} className={`w-full text-[9px] sm:text-xs font-mono tracking-[0.18em] sm:tracking-widest uppercase mb-4 sm:mb-6 pb-4 sm:pb-6 border-b ${isDark ? 'text-zinc-500 border-zinc-800' : 'text-zinc-500 border-zinc-200'}`}>
                   Frontend · Backend · Full-Stack
                 </motion.h4>
 
-                <motion.p variants={HERO_ITEM} className={`text-sm md:text-base font-serif leading-relaxed mb-8 max-w-lg ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                <motion.p variants={HERO_ITEM} className={`text-xs sm:text-base font-serif leading-relaxed mb-6 sm:mb-8 max-w-lg ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
                   Dedicated MCA student and Full Stack Web Developer. Skilled in rapidly adopting new technologies to build impactful, scalable real-world applications.
                 </motion.p>
 
-                <motion.div variants={HERO_ITEM} className="flex gap-4">
+                <motion.div variants={HERO_ITEM} className="flex justify-center lg:justify-start gap-3 sm:gap-4">
                   <SocialLink href="https://www.linkedin.com/in/tejas-sagar-659032287/" isDark={isDark}>
                     <LinkedinIcon />
                   </SocialLink>
@@ -1590,21 +1571,20 @@ const App = () => {
         <FadeSection id="about" isDark={isDark}>
           <SectionHeader title="ABOUT ME" index="01" isDark={isDark} />
           
-          <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
+          <div className="flex flex-col lg:flex-row gap-8 sm:gap-12 lg:gap-20 items-center lg:items-start">
             
-            {/* Left Column: Image with Fixed Corner Brackets, Flush Tag & Spatial Tilt */}
             <div className="w-full lg:w-5/12 flex justify-center lg:justify-end">
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={SCROLL_REPLAY_VIEWPORT}
                 transition={{ duration: 0.55, ease: IOS_SHEET_EASE }}
-                className="relative group max-w-[280px] w-full"
+                className="relative group max-w-[230px] sm:max-w-[280px] w-full"
               >
                 <HardwareRegistrationBrackets isDark={isDark} size="sm" />
                 
                 <SpatialTiltFrame>
-                  <div className={`relative p-2.5 border shadow-xl transition-colors duration-300 ${isDark ? 'border-zinc-800 group-hover:border-zinc-700 bg-black shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]' : 'border-zinc-200 group-hover:border-zinc-400 bg-white'} z-10`}>
+                  <div className={`relative p-2 sm:p-2.5 border shadow-xl transition-colors duration-300 ${isDark ? 'border-zinc-800 group-hover:border-zinc-700 bg-black shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]' : 'border-zinc-200 group-hover:border-zinc-400 bg-white'} z-10`}>
                     <div className={`border border-dotted ${isDark ? 'border-zinc-700 group-hover:border-[#ea0000]/60' : 'border-zinc-300 group-hover:border-[#ea0000]/60'} p-1 transition-colors duration-300`}>
                       <div className={`aspect-[4/5] relative overflow-hidden ${isDark ? 'bg-black' : 'bg-zinc-100'}`}>
                         <img 
@@ -1623,7 +1603,7 @@ const App = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={SCROLL_REPLAY_VIEWPORT}
                   transition={{ duration: 0.42, ease: NOTHING_DETENT_EASE, delay: 0.14 }}
-                  className={`absolute -bottom-3 left-5 px-3 py-1 font-mono text-[9px] font-bold tracking-[0.2em] uppercase z-30 shadow-xl border ${
+                  className={`absolute -bottom-2.5 left-4 px-2.5 py-1 font-mono text-[8px] sm:text-[9px] font-bold tracking-[0.18em] uppercase z-30 shadow-xl border ${
                     isDark
                       ? 'bg-white text-black border-white'
                       : 'bg-black text-white border-black'
@@ -1634,14 +1614,13 @@ const App = () => {
               </motion.div>
             </div>
 
-            {/* Right Column: Bio & Bidirectional Education Timeline */}
             <div className="w-full lg:w-7/12 flex flex-col">
               <motion.p
                 initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={SCROLL_REPLAY_VIEWPORT}
                 transition={{ duration: 0.45, ease: IOS_OPTICAL_EASE }}
-                className={`text-sm md:text-base font-serif leading-relaxed mb-10 ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}
+                className={`text-xs sm:text-base font-serif leading-relaxed mb-7 sm:mb-10 ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}
               >
                 I aim to contribute to impactful projects, collaborate effectively within teams, and expand my capabilities through continuous learning. Currently pursuing my Master of Computer Applications, focusing heavily on modern web and mobile architectures.
               </motion.p>
@@ -1651,13 +1630,13 @@ const App = () => {
                 whileInView={{ scaleX: 1 }}
                 viewport={SCROLL_REPLAY_VIEWPORT}
                 transition={{ duration: 0.45, ease: NOTHING_DETENT_EASE }}
-                className={`w-10 h-[1px] mb-10 origin-left ${isDark ? 'bg-zinc-700' : 'bg-zinc-300'}`}
+                className={`w-10 h-[1px] mb-7 sm:mb-10 origin-left ${isDark ? 'bg-zinc-700' : 'bg-zinc-300'}`}
               />
 
               <div>
-                <h4 className={`font-mono text-[10px] font-bold tracking-[0.3em] uppercase text-[#ea0000] mb-6`}>EDUCATION</h4>
+                <h4 className={`font-mono text-[10px] font-bold tracking-[0.3em] uppercase text-[#ea0000] mb-5 sm:mb-6`}>EDUCATION</h4>
                 
-                <div className="flex flex-col gap-6">
+                <div className="flex flex-col gap-5 sm:gap-6">
                   {[
                     { period: "2026 - 2028", school: "BMS Institute of Technology and Management", degree: "MCA Degree" },
                     { period: "2023 - 2026", school: "Dr. NSAM First Grade College", degree: "BCA Degree" },
@@ -1670,11 +1649,11 @@ const App = () => {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={SCROLL_REPLAY_VIEWPORT}
                       transition={{ duration: 0.45, ease: IOS_SHEET_EASE, delay: idx * 0.06 }}
-                      className="flex flex-col pl-4 border-l border-dotted border-zinc-700/60 hover:border-[#ea0000] transition-colors duration-200"
+                      className="flex flex-col pl-3.5 sm:pl-4 border-l border-dotted border-zinc-700/60 hover:border-[#ea0000] transition-colors duration-200"
                     >
-                      <p className={`font-mono text-[9px] mb-1 uppercase tracking-widest ${isDark ? 'text-zinc-500' : 'text-zinc-400'}`}>{edu.period}</p>
-                      <h5 className="font-serif text-lg md:text-xl leading-snug mb-1">{edu.school}</h5>
-                      <p className="font-mono text-[9px] tracking-widest uppercase opacity-70">{edu.degree}</p>
+                      <p className={`font-mono text-[8.5px] sm:text-[9px] mb-1 uppercase tracking-widest ${isDark ? 'text-zinc-500' : 'text-zinc-400'}`}>{edu.period}</p>
+                      <h5 className="font-serif text-base sm:text-xl leading-snug mb-1">{edu.school}</h5>
+                      <p className="font-mono text-[8.5px] sm:text-[9px] tracking-widest uppercase opacity-70">{edu.degree}</p>
                     </motion.div>
                   ))}
                 </div>
@@ -1688,7 +1667,7 @@ const App = () => {
         <FadeSection id="certs" isDark={isDark}>
           <SectionHeader title="CERTIFICATIONS" index="02" isDark={isDark} />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-4xl mx-auto w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 max-w-4xl mx-auto w-full">
             {[
               { title: "JavaScript Essentials 1 & 2", issuer: "Cisco Networking Academy", date: "September 2025" },
               { title: "Artificial Intelligence Fundamentals", issuer: "IBM SkillsBuild", date: "October 2025" },
@@ -1699,20 +1678,20 @@ const App = () => {
                 key={index}
                 isDark={isDark}
                 delay={index * 0.05}
-                className={`group p-5 border border-dotted transition-colors duration-150 backdrop-blur-xl ${
+                className={`group p-4 sm:p-5 border border-dotted transition-colors duration-150 backdrop-blur-xl ${
                   isDark
                     ? 'border-zinc-800 bg-white/[0.02] hover:border-[#ea0000] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]'
                     : 'border-zinc-300 bg-white/70 hover:border-[#ea0000] shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]'
                 }`}
               >
-                <div className="flex items-start gap-5">
+                <div className="flex items-start gap-3.5 sm:gap-5">
                   <div className="absolute top-2.5 right-2.5 w-1.5 h-1.5 rounded-full bg-[#ea0000] opacity-0 group-hover:opacity-100 transition-opacity duration-150" />
 
-                  <div className={`mt-0.5 p-2.5 border rounded-full transition-colors duration-150 ${isDark ? 'border-zinc-800 text-zinc-400 group-hover:text-[#ea0000] group-hover:border-[#ea0000]/30' : 'border-zinc-300 text-zinc-500 group-hover:text-[#ea0000] group-hover:border-[#ea0000]/30'}`}>
+                  <div className={`mt-0.5 p-2 sm:p-2.5 border rounded-full shrink-0 transition-colors duration-150 ${isDark ? 'border-zinc-800 text-zinc-400 group-hover:text-[#ea0000] group-hover:border-[#ea0000]/30' : 'border-zinc-300 text-zinc-500 group-hover:text-[#ea0000] group-hover:border-[#ea0000]/30'}`}>
                     <BadgeIcon />
                   </div>
-                  <div className="flex flex-col">
-                    <h3 className="font-serif text-base font-bold leading-snug mb-1.5">{cert.title}</h3>
+                  <div className="flex flex-col min-w-0">
+                    <h3 className="font-serif text-sm sm:text-base font-bold leading-snug mb-1">{cert.title}</h3>
                     <p className={`font-serif text-xs mb-1 ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>{cert.issuer}</p>
                     <p className="font-mono text-[8px] tracking-widest uppercase opacity-50">{cert.date}</p>
                   </div>
@@ -1725,7 +1704,7 @@ const App = () => {
         {/* --- TECHNICAL SKILLS --- */}
         <FadeSection id="skills" isDark={isDark}>
           <SectionHeader title="SYSTEM ARSENAL" index="03" isDark={isDark} />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 sm:gap-x-10 gap-y-8 sm:gap-y-12">
             {[
               { category: "Frontend", tools: ["React", "Next.js", "Angular", "Tailwind CSS", "JavaScript", "TypeScript", "HTML/CSS"] },
               { category: "Backend", tools: ["Node.js", "Express.js", "Nest.js", "PHP"] },
@@ -1742,10 +1721,10 @@ const App = () => {
                 transition={{ duration: 0.45, ease: IOS_OPTICAL_EASE, delay: i * 0.04 }}
                 className="flex flex-col group"
               >
-                <h3 className={`font-serif text-base mb-5 border-b pb-2 uppercase tracking-widest transition-colors duration-150 ${isDark ? 'border-zinc-800 group-hover:border-[#ea0000] group-hover:text-[#ea0000]' : 'border-zinc-200 group-hover:border-[#ea0000] group-hover:text-[#ea0000]'}`}>
+                <h3 className={`font-serif text-sm sm:text-base mb-3.5 sm:mb-5 border-b pb-2 uppercase tracking-widest transition-colors duration-150 ${isDark ? 'border-zinc-800 group-hover:border-[#ea0000] group-hover:text-[#ea0000]' : 'border-zinc-200 group-hover:border-[#ea0000] group-hover:text-[#ea0000]'}`}>
                   <MicroGraphicIcon /> {stack.category}
                 </h3>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {stack.tools.map((tool, tIdx) => (
                     <motion.span 
                       key={tool}
@@ -1754,7 +1733,7 @@ const App = () => {
                       viewport={SCROLL_REPLAY_VIEWPORT}
                       whileTap={{ scale: 0.95 }}
                       transition={{ duration: 0.28, ease: NOTHING_DETENT_EASE, delay: tIdx * 0.015 }}
-                      className={`px-3 py-1.5 text-[8px] font-mono font-bold tracking-widest uppercase border transition-colors duration-150 cursor-default backdrop-blur-md ${
+                      className={`px-2.5 py-1.5 text-[8px] font-mono font-bold tracking-widest uppercase border transition-colors duration-150 cursor-default backdrop-blur-md ${
                         isDark
                           ? 'border-zinc-800 text-zinc-300 hover:border-[#ea0000] hover:bg-[#ea0000]/10 hover:text-[#ea0000] bg-white/[0.02] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]'
                           : 'border-zinc-300 text-zinc-600 hover:border-[#ea0000] hover:bg-[#ea0000]/10 hover:text-[#ea0000] bg-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]'
@@ -1772,28 +1751,26 @@ const App = () => {
         {/* --- HARDWARE TELEMETRY EXPERIENCE TIMELINE --- */}
         <FadeSection id="experience" isDark={isDark}>
           <SectionHeader title="EXPERIENCE" index="04" isDark={isDark} />
-          <div className="relative max-w-4xl mx-auto pl-6 md:pl-10">
-            {/* Vertical Dotted Hardware Spine */}
+          <div className="relative max-w-4xl mx-auto pl-5 sm:pl-10">
             <motion.div
               initial={{ scaleY: 0 }}
               whileInView={{ scaleY: 1 }}
               viewport={SCROLL_REPLAY_VIEWPORT}
               transition={{ duration: 0.7, ease: IOS_SHEET_EASE }}
-              className={`absolute left-1.5 md:left-3 top-2 bottom-2 w-[1px] origin-top border-l border-dotted ${
+              className={`absolute left-1 sm:left-3 top-2 bottom-2 w-[1px] origin-top border-l border-dotted ${
                 isDark ? 'border-zinc-700' : 'border-zinc-300'
               }`}
             />
 
-            <div className="flex flex-col gap-10">
+            <div className="flex flex-col gap-7 sm:gap-10">
               {EXPERIENCE_DATA.map((exp, idx) => (
                 <div key={exp.code} className="relative group/exp">
-                  {/* Timeline Hardware Node */}
                   <motion.div
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}
                     viewport={SCROLL_REPLAY_VIEWPORT}
                     transition={{ duration: 0.35, ease: NOTHING_DETENT_EASE, delay: idx * 0.1 }}
-                    className={`absolute -left-[22px] md:-left-[34px] top-8 w-3.5 h-3.5 rounded-full border flex items-center justify-center z-20 ${
+                    className={`absolute -left-[19px] sm:-left-[34px] top-6 sm:top-8 w-3 h-3 sm:w-3.5 sm:h-3.5 rounded-full border flex items-center justify-center z-20 ${
                       isDark ? 'bg-black border-zinc-700 group-hover/exp:border-[#ea0000]' : 'bg-white border-zinc-400 group-hover/exp:border-[#ea0000]'
                     } transition-colors duration-200`}
                   >
@@ -1803,43 +1780,39 @@ const App = () => {
                   <LiquidGlassCard 
                     isDark={isDark}
                     delay={idx * 0.08}
-                    className={`p-6 md:p-9 border transition-all duration-200 backdrop-blur-xl ${
+                    className={`p-4 sm:p-6 md:p-9 border transition-all duration-200 backdrop-blur-xl ${
                       isDark
                         ? 'border-zinc-800 bg-white/[0.02] hover:border-[#ea0000]/70 shadow-[inset_0_1px_0_rgba(255,255,255,0.07)]'
                         : 'border-zinc-300 bg-white/75 hover:border-[#ea0000]/70 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]'
                     }`}
                   >
-                    {/* Corner Registration Crosshairs */}
                     <span className="absolute top-0 left-0 w-2.5 h-2.5 border-t-[1.5px] border-l-[1.5px] border-[#ea0000] opacity-0 group-hover/exp:opacity-100 transition-opacity duration-200" />
                     <span className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b-[1.5px] border-r-[1.5px] border-[#ea0000] opacity-0 group-hover/exp:opacity-100 transition-opacity duration-200" />
 
-                    {/* Top Telemetry Strip */}
-                    <div className="flex items-center justify-between gap-2 mb-4">
+                    <div className="flex flex-wrap items-center justify-between gap-2 mb-3.5 sm:mb-4">
                       <div className="flex items-center gap-2">
                         <span className="w-1.5 h-1.5 rounded-full bg-[#ea0000]" />
-                        <span className="font-mono text-[8px] font-bold tracking-[0.25em] uppercase text-[#ea0000]">
+                        <span className="font-mono text-[8px] font-bold tracking-[0.2em] sm:tracking-[0.25em] uppercase text-[#ea0000]">
                           {exp.code}
                         </span>
                       </div>
-                      <span className={`px-2.5 py-0.5 font-mono text-[8px] font-bold tracking-[0.2em] uppercase border border-dotted ${
+                      <span className={`px-2 py-0.5 font-mono text-[7.5px] sm:text-[8px] font-bold tracking-[0.16em] uppercase border border-dotted ${
                         isDark ? 'border-zinc-700 bg-black/60 text-zinc-300' : 'border-zinc-300 bg-zinc-100 text-zinc-700'
                       }`}>
                         {exp.period}
                       </span>
                     </div>
 
-                    {/* Company & Role Header */}
-                    <div className={`mb-6 pb-5 border-b border-dotted ${isDark ? 'border-zinc-800' : 'border-zinc-200'}`}>
-                      <h3 className="font-nothing text-xl md:text-2xl tracking-[0.12em] uppercase mb-1.5 group-hover/exp:text-[#ea0000] transition-colors duration-200">
+                    <div className={`mb-4 sm:mb-6 pb-4 sm:pb-5 border-b border-dotted ${isDark ? 'border-zinc-800' : 'border-zinc-200'}`}>
+                      <h3 className="font-nothing text-lg sm:text-2xl tracking-[0.1em] sm:tracking-[0.12em] uppercase mb-1 group-hover/exp:text-[#ea0000] transition-colors duration-200">
                         {exp.company}
                       </h3>
-                      <p className={`font-serif italic text-sm ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                      <p className={`font-serif italic text-xs sm:text-sm ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
                         {exp.role}
                       </p>
                     </div>
 
-                    {/* Interactive Highlight Rows */}
-                    <ul className={`text-xs md:text-sm font-serif leading-relaxed space-y-2.5 mb-6 ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                    <ul className={`text-xs sm:text-sm font-serif leading-relaxed space-y-2 sm:space-y-2.5 mb-5 sm:mb-6 ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
                       {exp.highlights.map((item, hIdx) => (
                         <motion.li
                           key={hIdx}
@@ -1847,23 +1820,22 @@ const App = () => {
                           whileInView={{ opacity: 1, x: 0 }}
                           viewport={SCROLL_REPLAY_VIEWPORT}
                           transition={{ duration: 0.35, delay: 0.08 + hIdx * 0.05, ease: IOS_OPTICAL_EASE }}
-                          className={`group/row flex gap-3 items-start p-2 -mx-2 rounded-[2px] transition-colors duration-150 ${
+                          className={`group/row flex gap-2.5 sm:gap-3 items-start p-1.5 sm:p-2 -mx-1.5 sm:-mx-2 rounded-[2px] transition-colors duration-150 ${
                             isDark ? 'hover:bg-white/[0.03] hover:text-zinc-200' : 'hover:bg-black/[0.03] hover:text-black'
                           }`}
                         >
-                          <span className="mt-2 w-1.5 h-1.5 shrink-0 bg-[#ea0000] group-hover/row:scale-125 group-hover/row:shadow-[0_0_8px_#ea0000] transition-all" />
+                          <span className="mt-1.5 sm:mt-2 w-1.5 h-1.5 shrink-0 bg-[#ea0000] group-hover/row:scale-125 group-hover/row:shadow-[0_0_8px_#ea0000] transition-all" />
                           <span>{item}</span>
                         </motion.li>
                       ))}
                     </ul>
 
-                    {/* Deployed Stack Footer Pills */}
-                    <div className={`pt-4 border-t border-dotted flex flex-wrap items-center justify-between gap-3 ${isDark ? 'border-zinc-800/80' : 'border-zinc-200'}`}>
+                    <div className={`pt-3.5 sm:pt-4 border-t border-dotted flex flex-wrap items-center justify-between gap-2.5 sm:gap-3 ${isDark ? 'border-zinc-800/80' : 'border-zinc-200'}`}>
                       <div className="flex flex-wrap gap-1.5">
                         {exp.stack.map((tech) => (
                           <span
                             key={tech}
-                            className={`px-2.5 py-1 text-[8px] font-mono font-bold tracking-widest uppercase border transition-colors duration-150 ${
+                            className={`px-2 py-1 text-[7.5px] sm:text-[8px] font-mono font-bold tracking-widest uppercase border transition-colors duration-150 ${
                               isDark
                                 ? 'bg-black/60 border-zinc-800 text-zinc-300 group-hover/exp:border-zinc-700'
                                 : 'bg-white border-zinc-300 text-zinc-700'
@@ -1873,7 +1845,7 @@ const App = () => {
                           </span>
                         ))}
                       </div>
-                      <span className="font-mono text-[8px] tracking-[0.22em] uppercase opacity-45">
+                      <span className="font-mono text-[7.5px] sm:text-[8px] tracking-[0.18em] uppercase opacity-45">
                         STATUS // {exp.status}
                       </span>
                     </div>
@@ -1888,7 +1860,7 @@ const App = () => {
         <FadeSection id="projects" isDark={isDark}>
           <SectionHeader title="MODULES" index="05" isDark={isDark} />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-9 sm:gap-y-12">
             {PROJECTS_DATA.map((project, i) => (
               <motion.div 
                 key={i}
@@ -1902,25 +1874,25 @@ const App = () => {
                 onMouseEnter={() => setHoverColorRGB(project.color)}
                 onMouseLeave={() => setHoverColorRGB('234, 0, 0')}
               >
-                <SpatialTiltFrame className="mb-6">
+                <SpatialTiltFrame className="mb-4 sm:mb-6">
                   <div className={`aspect-[16/9] relative overflow-hidden flex items-center justify-center border transition-colors duration-150 ${isDark ? 'border-zinc-800 bg-black shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]' : 'border-zinc-300 bg-white'}`}>
                     
                     <img src={project.img} alt={project.name} className="w-full h-full object-cover grayscale opacity-70 group-hover:opacity-45 group-hover:grayscale-0 group-hover:scale-105 group-hover:blur-[2px] transition-all duration-500 z-0" />
                     
                     <div className="absolute inset-0 bg-black/40 md:bg-transparent md:group-hover:bg-black/50 transition-colors duration-200 z-10" />
 
-                    <div className={`absolute top-3 left-3 px-2 py-1 font-mono text-[8px] font-bold tracking-widest uppercase shadow-xl z-20 ${isDark ? 'bg-white text-black' : 'bg-black text-white'}`}>
+                    <div className={`absolute top-2.5 left-2.5 sm:top-3 sm:left-3 px-2 py-1 font-mono text-[7.5px] sm:text-[8px] font-bold tracking-widest uppercase shadow-xl z-20 ${isDark ? 'bg-white text-black' : 'bg-black text-white'}`}>
                       {project.id}
                     </div>
 
-                    <div className="absolute top-3 right-3 px-2.5 py-1 font-mono text-[8px] font-bold tracking-widest uppercase bg-black/80 backdrop-blur-md text-white border border-white/15 group-hover:border-[#ea0000] group-hover:bg-[#ea0000] transition-colors z-20 flex items-center gap-1.5">
+                    <div className="absolute top-2.5 right-2.5 sm:top-3 sm:right-3 px-2 sm:px-2.5 py-1 font-mono text-[7.5px] sm:text-[8px] font-bold tracking-widest uppercase bg-black/80 backdrop-blur-md text-white border border-white/15 group-hover:border-[#ea0000] group-hover:bg-[#ea0000] transition-colors z-20 flex items-center gap-1.5">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#ea0000] group-hover:bg-white animate-pulse" />
-                      <span>CASE STUDY +</span>
+                      <span>DOSSIER +</span>
                     </div>
                     
                     <div
                       onClick={(e) => e.stopPropagation()}
-                      className="absolute inset-0 flex items-center justify-center gap-5 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-200 z-30"
+                      className="hidden md:flex absolute inset-0 items-center justify-center gap-5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-30"
                     >
                       <SocialLink href={project.link} isDark={true}>
                         <ArrowUpRightIcon />
@@ -1932,19 +1904,47 @@ const App = () => {
 
                   </div>
                 </SpatialTiltFrame>
-                <div className="flex items-center justify-between gap-2 mb-3">
-                  <h3 className="text-2xl font-light tracking-tight uppercase group-hover:text-[#ea0000] transition-colors duration-150">{project.name}</h3>
-                  <span className="font-mono text-[8px] tracking-widest uppercase opacity-50 group-hover:opacity-100 group-hover:text-[#ea0000] transition-all">
-                    OPEN DOSSIER →
+
+                <div className="flex items-center justify-between gap-2 mb-2">
+                  <h3 className="text-lg sm:text-2xl font-light tracking-tight uppercase group-hover:text-[#ea0000] transition-colors duration-150">{project.name}</h3>
+                  <span className="font-mono text-[8px] tracking-widest uppercase opacity-60 group-hover:opacity-100 group-hover:text-[#ea0000] transition-all shrink-0">
+                    SPECS →
                   </span>
                 </div>
-                <p className={`text-sm font-serif leading-relaxed mb-6 flex-grow max-w-md ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>{project.desc}</p>
-                <div className="flex flex-wrap gap-2 mt-auto">
-                  {project.tech.map(t => (
-                    <span key={t} className={`px-2 py-1 text-[8px] font-mono font-bold tracking-widest uppercase border ${isDark ? 'bg-[#111] border-zinc-800 text-zinc-300 group-hover:border-[#ea0000] group-hover:text-[#ea0000]' : 'bg-white border-zinc-300 text-zinc-600 group-hover:border-[#ea0000] group-hover:text-[#ea0000]'} transition-colors duration-150`}>
-                      {t}
-                    </span>
-                  ))}
+
+                <p className={`text-xs sm:text-sm font-serif leading-relaxed mb-4 sm:mb-6 flex-grow max-w-md ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>{project.desc}</p>
+
+                <div className="flex flex-wrap items-center justify-between gap-2 mt-auto">
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                    {project.tech.map(t => (
+                      <span key={t} className={`px-2 py-1 text-[7.5px] sm:text-[8px] font-mono font-bold tracking-widest uppercase border ${isDark ? 'bg-[#111] border-zinc-800 text-zinc-300 group-hover:border-[#ea0000] group-hover:text-[#ea0000]' : 'bg-white border-zinc-300 text-zinc-600 group-hover:border-[#ea0000] group-hover:text-[#ea0000]'} transition-colors duration-150`}>
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="flex md:hidden items-center gap-2" onClick={(e) => e.stopPropagation()}>
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`px-2.5 py-1 text-[7.5px] font-mono font-bold tracking-widest uppercase border border-dotted ${
+                        isDark ? 'border-zinc-700 text-zinc-200 hover:border-[#ea0000]' : 'border-zinc-300 text-zinc-800 hover:border-[#ea0000]'
+                      }`}
+                    >
+                      LIVE ↗
+                    </a>
+                    <a
+                      href={project.repo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`px-2.5 py-1 text-[7.5px] font-mono font-bold tracking-widest uppercase border border-dotted ${
+                        isDark ? 'border-zinc-700 text-zinc-200 hover:border-[#ea0000]' : 'border-zinc-300 text-zinc-800 hover:border-[#ea0000]'
+                      }`}
+                    >
+                      CODE
+                    </a>
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -1956,39 +1956,39 @@ const App = () => {
           <div className="max-w-[1000px] mx-auto w-full">
             
             <SectionHeader title="LET'S CONNECT" index="06" isDark={isDark} />
-            <p className={`text-center font-serif text-base -mt-10 mb-14 ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
+            <p className={`text-center font-serif text-xs sm:text-base -mt-6 sm:-mt-10 mb-10 sm:mb-14 ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
               I'm always open to new opportunities and collaborations. Feel free to reach out.
             </p>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20 items-start">
               
-              <div className="flex flex-col gap-8">
+              <div className="flex flex-col gap-6 sm:gap-8">
                 
-                <div className="flex flex-col gap-4">
-                  <h4 className={`font-serif text-xl font-light mb-1`}>Contact Information</h4>
+                <div className="flex flex-col gap-3 sm:gap-4">
+                  <h4 className={`font-serif text-lg sm:text-xl font-light mb-0.5`}>Contact Information</h4>
                   
                   <LiquidGlassCard 
                     isDark={isDark}
                     isInteractive={true}
                     delay={0}
                     onClick={() => handleCopy('tejassagar9@gmail.com', 'Email')}
-                    className={`p-4 md:p-5 border border-dotted group transition-colors duration-150 cursor-pointer backdrop-blur-xl ${
+                    className={`p-3.5 sm:p-5 border border-dotted group transition-colors duration-150 cursor-pointer backdrop-blur-xl ${
                       isDark
                         ? 'border-zinc-800 bg-white/[0.02] hover:border-[#ea0000] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]'
                         : 'border-zinc-300 bg-white/70 hover:border-[#ea0000] shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]'
                     }`}
                   >
-                    <div className="flex items-center justify-between gap-4">
-                      <div className="flex items-center gap-4">
-                        <div className={`p-2.5 rounded-full ${isDark ? 'bg-zinc-900 text-zinc-400 group-hover:text-white' : 'bg-zinc-200 text-zinc-600 group-hover:text-black'} transition-colors duration-150`}>
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+                        <div className={`p-2 sm:p-2.5 rounded-full shrink-0 ${isDark ? 'bg-zinc-900 text-zinc-400 group-hover:text-white' : 'bg-zinc-200 text-zinc-600 group-hover:text-black'} transition-colors duration-150`}>
                           <MailIcon />
                         </div>
-                        <div>
-                          <p className="font-mono text-[8px] uppercase tracking-widest opacity-50 mb-1">Email (Tap to copy)</p>
-                          <p className="text-xs md:text-sm font-serif font-bold">tejassagar9@gmail.com</p>
+                        <div className="min-w-0">
+                          <p className="font-mono text-[7.5px] sm:text-[8px] uppercase tracking-widest opacity-50 mb-0.5">Email (Tap to copy)</p>
+                          <p className="text-xs sm:text-sm font-serif font-bold truncate">tejassagar9@gmail.com</p>
                         </div>
                       </div>
-                      <div className={`p-2 border border-dotted transition-colors ${copiedField === 'Email' ? 'border-emerald-500 text-emerald-500' : isDark ? 'border-zinc-800 text-zinc-500 group-hover:text-[#ea0000]' : 'border-zinc-300 text-zinc-500 group-hover:text-[#ea0000]'}`}>
+                      <div className={`p-2 border border-dotted shrink-0 transition-colors ${copiedField === 'Email' ? 'border-emerald-500 text-emerald-500' : isDark ? 'border-zinc-800 text-zinc-500 group-hover:text-[#ea0000]' : 'border-zinc-300 text-zinc-500 group-hover:text-[#ea0000]'}`}>
                         {copiedField === 'Email' ? <CheckIcon /> : <CopyIcon />}
                       </div>
                     </div>
@@ -1999,23 +1999,23 @@ const App = () => {
                     isInteractive={true}
                     delay={0.05}
                     onClick={() => handleCopy('+91 80739 00091', 'Phone')}
-                    className={`p-4 md:p-5 border border-dotted group transition-colors duration-150 cursor-pointer backdrop-blur-xl ${
+                    className={`p-3.5 sm:p-5 border border-dotted group transition-colors duration-150 cursor-pointer backdrop-blur-xl ${
                       isDark
                         ? 'border-zinc-800 bg-white/[0.02] hover:border-[#ea0000] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]'
                         : 'border-zinc-300 bg-white/70 hover:border-[#ea0000] shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]'
                     }`}
                   >
-                    <div className="flex items-center justify-between gap-4">
-                      <div className="flex items-center gap-4">
-                        <div className={`p-2.5 rounded-full ${isDark ? 'bg-zinc-900 text-zinc-400 group-hover:text-white' : 'bg-zinc-200 text-zinc-600 group-hover:text-black'} transition-colors duration-150`}>
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+                        <div className={`p-2 sm:p-2.5 rounded-full shrink-0 ${isDark ? 'bg-zinc-900 text-zinc-400 group-hover:text-white' : 'bg-zinc-200 text-zinc-600 group-hover:text-black'} transition-colors duration-150`}>
                           <PhoneIcon />
                         </div>
-                        <div>
-                          <p className="font-mono text-[8px] uppercase tracking-widest opacity-50 mb-1">Phone (Tap to copy)</p>
-                          <p className="text-xs md:text-sm font-serif font-bold">+91 80739 00091</p>
+                        <div className="min-w-0">
+                          <p className="font-mono text-[7.5px] sm:text-[8px] uppercase tracking-widest opacity-50 mb-0.5">Phone (Tap to copy)</p>
+                          <p className="text-xs sm:text-sm font-serif font-bold truncate">+91 80739 00091</p>
                         </div>
                       </div>
-                      <div className={`p-2 border border-dotted transition-colors ${copiedField === 'Phone' ? 'border-emerald-500 text-emerald-500' : isDark ? 'border-zinc-800 text-zinc-500 group-hover:text-[#ea0000]' : 'border-zinc-300 text-zinc-500 group-hover:text-[#ea0000]'}`}>
+                      <div className={`p-2 border border-dotted shrink-0 transition-colors ${copiedField === 'Phone' ? 'border-emerald-500 text-emerald-500' : isDark ? 'border-zinc-800 text-zinc-500 group-hover:text-[#ea0000]' : 'border-zinc-300 text-zinc-500 group-hover:text-[#ea0000]'}`}>
                         {copiedField === 'Phone' ? <CheckIcon /> : <CopyIcon />}
                       </div>
                     </div>
@@ -2024,27 +2024,27 @@ const App = () => {
                   <LiquidGlassCard 
                     isDark={isDark}
                     delay={0.1}
-                    className={`p-4 md:p-5 border border-dotted backdrop-blur-xl ${
+                    className={`p-3.5 sm:p-5 border border-dotted backdrop-blur-xl ${
                       isDark
                         ? 'border-zinc-800 bg-white/[0.02] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]'
                         : 'border-zinc-300 bg-white/70 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]'
                     }`}
                   >
-                    <div className="flex items-center gap-4">
-                      <div className={`p-2.5 rounded-full ${isDark ? 'bg-zinc-900 text-zinc-400' : 'bg-zinc-200 text-zinc-600'}`}>
+                    <div className="flex items-center gap-3 sm:gap-4">
+                      <div className={`p-2 sm:p-2.5 rounded-full shrink-0 ${isDark ? 'bg-zinc-900 text-zinc-400' : 'bg-zinc-200 text-zinc-600'}`}>
                         <MapPinIcon />
                       </div>
                       <div>
-                        <p className="font-mono text-[8px] uppercase tracking-widest opacity-50 mb-1">Location</p>
-                        <p className="text-xs md:text-sm font-serif font-bold">Bangalore, India</p>
+                        <p className="font-mono text-[7.5px] sm:text-[8px] uppercase tracking-widest opacity-50 mb-0.5">Location</p>
+                        <p className="text-xs sm:text-sm font-serif font-bold">Bangalore, India</p>
                       </div>
                     </div>
                   </LiquidGlassCard>
                 </div>
 
-                <div className="flex flex-col gap-4">
-                  <h4 className={`font-serif text-xl font-light mb-1`}>Follow Me</h4>
-                  <div className="flex gap-4">
+                <div className="flex flex-col gap-3">
+                  <h4 className={`font-serif text-lg sm:text-xl font-light`}>Follow Me</h4>
+                  <div className="flex gap-3 sm:gap-4">
                     <SocialLink href="https://www.linkedin.com/in/tejas-sagar-659032287/" isDark={isDark}>
                       <LinkedinIcon />
                     </SocialLink>
@@ -2056,10 +2056,10 @@ const App = () => {
 
               </div>
 
-              <div className="flex flex-col gap-5">
-                <h4 className={`font-serif text-xl font-light mb-1`}>Send a Message</h4>
+              <div className="flex flex-col gap-4 sm:gap-5">
+                <h4 className={`font-serif text-lg sm:text-xl font-light`}>Send a Message</h4>
                 
-                <form className="space-y-5" onSubmit={handleFormSubmit}>
+                <form className="space-y-4 sm:space-y-5" onSubmit={handleFormSubmit}>
                   
                   <div className="flex flex-col gap-1.5">
                     <label className={`font-serif text-xs ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>Name *</label>
@@ -2113,7 +2113,7 @@ const App = () => {
                     disabled={formStatus === 'submitting'}
                     whileTap={{ scale: 0.985 }}
                     transition={{ duration: 0.12, ease: NOTHING_DETENT_EASE }}
-                    className={`w-full py-3 font-mono text-[11px] font-bold tracking-[0.2em] uppercase flex items-center justify-center gap-2 transition-colors duration-150 cursor-pointer ${
+                    className={`w-full py-3 font-mono text-[10px] sm:text-[11px] font-bold tracking-[0.2em] uppercase flex items-center justify-center gap-2 transition-colors duration-150 cursor-pointer ${
                       formStatus === 'sent'
                         ? 'bg-emerald-600 text-white'
                         : isDark
@@ -2147,11 +2147,11 @@ const App = () => {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.5, ease: IOS_OPTICAL_EASE }}
           viewport={SCROLL_REPLAY_VIEWPORT}
-          className={`py-10 border-t overflow-hidden ${isDark ? 'border-zinc-800 bg-black' : 'border-zinc-200 bg-white'}`}
+          className={`py-8 sm:py-10 border-t overflow-hidden ${isDark ? 'border-zinc-800 bg-black' : 'border-zinc-200 bg-white'}`}
         >
-          <div className="max-w-[1200px] mx-auto px-6 flex flex-col items-center gap-6">
-            <div className="flex w-full justify-between items-center opacity-60 text-[9px] font-mono uppercase tracking-widest">
-              <span className="font-nothing text-2xl text-[#ea0000] opacity-100">TSK</span>
+          <div className="max-w-[1200px] mx-auto px-4 sm:px-6 flex flex-col items-center gap-5 sm:gap-6">
+            <div className="flex w-full justify-between items-center opacity-60 text-[8.5px] sm:text-[9px] font-mono uppercase tracking-widest">
+              <span className="font-nothing text-xl sm:text-2xl text-[#ea0000] opacity-100">TSK</span>
               <span>© 2026 LOG.</span>
               <span className="hidden md:inline text-[#ea0000]">SYS.V.5.0</span>
             </div>
@@ -2165,8 +2165,8 @@ const App = () => {
             />
             
             <motion.p 
-              initial={{ opacity: 0, letterSpacing: "0.14em" }}
-              whileInView={{ opacity: 0.6, letterSpacing: "0.4em" }}
+              initial={{ opacity: 0, letterSpacing: "0.12em" }}
+              whileInView={{ opacity: 0.6, letterSpacing: "0.28em" }}
               transition={{ duration: 0.6, delay: 0.05, ease: IOS_OPTICAL_EASE }}
               viewport={SCROLL_REPLAY_VIEWPORT}
               className="text-[8px] font-mono uppercase font-bold text-center text-[#ea0000]"
