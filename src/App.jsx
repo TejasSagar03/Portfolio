@@ -1191,12 +1191,12 @@ const ProjectCaseStudyDrawer = ({ project, onClose, onSelectProject, isDark }) =
 };
 
 const NAV_ITEMS = [
-  { id: 'about', label: 'About', dotColor: '#22c55e' },
-  { id: 'certs', label: 'Certs', dotColor: '#3b82f6' },
-  { id: 'skills', label: 'Skills', dotColor: '#eab308' },
-  { id: 'experience', label: 'Exp', dotColor: '#ea0000' },
-  { id: 'projects', label: 'Work', dotColor: '#ea0000' },
-  { id: 'contact', label: 'Contact', dotColor: '#22c55e' }
+  { id: 'about', label: 'About', mobileLabel: 'About', dotColor: '#22c55e' },
+  { id: 'certs', label: 'Certs', mobileLabel: 'Certs', dotColor: '#3b82f6' },
+  { id: 'skills', label: 'Skills', mobileLabel: 'Skills', dotColor: '#eab308' },
+  { id: 'experience', label: 'Experience', mobileLabel: 'Exp', dotColor: '#ea0000' },
+  { id: 'projects', label: 'Projects', mobileLabel: 'Work', dotColor: '#ea0000' },
+  { id: 'contact', label: 'Contact', mobileLabel: 'Contact', dotColor: '#22c55e' }
 ];
 
 const HERO_STAGGER = {
@@ -1411,41 +1411,42 @@ const App = () => {
               </span>
             </a>
             
-            <div className={`flex items-center justify-around sm:justify-start flex-1 gap-0.5 sm:gap-1 text-[7.5px] sm:text-[9px] font-bold tracking-[0.08em] sm:tracking-[0.18em] uppercase ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
-              {NAV_ITEMS.map((item) => {
-                const isActive = activeSection === item.id;
-                return (
-                  <a
-                    key={item.id}
-                    href={`#${item.id}`}
-                    className={`relative px-1.5 sm:px-3 py-1 rounded-[2px] flex items-center gap-1 shrink-0 transition-colors duration-150 ${
-                      isActive 
-                        ? (isDark ? 'text-white' : 'text-black') 
-                        : (isDark ? 'hover:text-zinc-200' : 'hover:text-zinc-900')
-                    }`}
-                  >
-                    {isActive && (
-                      <motion.span
-                        layoutId="os5-lucent-dock"
-                        transition={NOTHING_LAYOUT_SPRING}
-                        className={`absolute inset-0 rounded-[2px] -z-10 border border-dotted ${
-                          isDark 
-                            ? 'bg-white/[0.07] border-zinc-600 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]' 
-                            : 'bg-black/[0.05] border-zinc-400 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]'
-                        }`}
-                      />
-                    )}
-                    <span
-                      style={{ backgroundColor: isActive ? item.dotColor : 'transparent' }}
-                      className={`hidden sm:inline-block w-1.5 h-1.5 rounded-full shrink-0 transition-all duration-150 ${
-                        isActive ? 'scale-100 opacity-100' : 'scale-0 opacity-0 w-0'
-                      }`}
-                    />
-                    <span>{item.label}</span>
-                  </a>
-                );
-              })}
-            </div>
+           <div className={`flex items-center justify-around sm:justify-between flex-1 px-1 sm:px-3 gap-0.5 sm:gap-1 text-[7.5px] sm:text-[9px] font-bold tracking-[0.08em] sm:tracking-[0.18em] uppercase ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
+  {NAV_ITEMS.map((item) => {
+    const isActive = activeSection === item.id;
+    return (
+      <a
+        key={item.id}
+        href={`#${item.id}`}
+        className={`relative px-1.5 sm:px-3 py-1 rounded-[2px] flex items-center gap-1.5 shrink-0 transition-colors duration-150 ${
+          isActive 
+            ? (isDark ? 'text-white' : 'text-black') 
+            : (isDark ? 'hover:text-zinc-200' : 'hover:text-zinc-900')
+        }`}
+      >
+        {isActive && (
+          <motion.span
+            layoutId="os5-lucent-dock"
+            transition={NOTHING_LAYOUT_SPRING}
+            className={`absolute inset-0 rounded-[2px] -z-10 border border-dotted ${
+              isDark 
+                ? 'bg-white/[0.07] border-zinc-600 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]' 
+                : 'bg-black/[0.05] border-zinc-400 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]'
+            }`}
+          />
+        )}
+        <span
+  style={{ backgroundColor: isActive ? item.dotColor : 'transparent' }}
+  className={`inline-block w-1.5 h-1.5 rounded-full shrink-0 transition-all duration-150 ${
+    isActive ? 'scale-100 opacity-100' : 'scale-0 opacity-0 w-0'
+  }`}
+/>
+        <span className="sm:hidden">{item.mobileLabel}</span>
+        <span className="hidden sm:inline">{item.label}</span>
+      </a>
+    );
+  })}
+</div>
             
             <button 
               type="button"
