@@ -1394,84 +1394,82 @@ const App = () => {
       >
         
         {/* --- FLOATING NOTHING OS 5.0 x iOS LUCENT DOCK --- */}
-        <header className="fixed top-3 sm:top-5 left-0 w-full z-50 px-2.5 sm:px-4 pointer-events-none">
-          <motion.nav 
-            initial={{ opacity: 0, scale: 0.97 }}
-            animate={{ opacity: booted ? 1 : 0, scale: booted ? 1 : 0.97 }}
-            transition={{ duration: 0.42, ease: IOS_OPTICAL_EASE }}
-            className={`pointer-events-auto max-w-[740px] mx-auto pl-2.5 sm:pl-4 pr-1.5 sm:pr-2 min-h-10 sm:h-11 py-1 sm:py-0 rounded-[4px] flex flex-wrap sm:flex-nowrap items-center justify-between gap-1.5 sm:gap-2 backdrop-blur-2xl border shadow-2xl transition-colors duration-300 ${
-              isDark 
-                ? 'bg-zinc-950/85 border-zinc-800/90 shadow-black/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.09)] text-white' 
-                : 'bg-white/90 border-zinc-300 shadow-zinc-300/50 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] text-black'
+<header className="fixed top-3 sm:top-5 left-0 w-full z-50 px-2 sm:px-4 pointer-events-none">
+  <motion.nav 
+    initial={{ opacity: 0, scale: 0.97 }}
+    animate={{ opacity: booted ? 1 : 0, scale: booted ? 1 : 0.97 }}
+    transition={{ duration: 0.42, ease: IOS_OPTICAL_EASE }}
+    className={`pointer-events-auto max-w-[740px] mx-auto pl-2.5 sm:pl-4 pr-1.5 sm:pr-2 h-10 sm:h-11 rounded-[4px] flex flex-nowrap items-center justify-between gap-1 sm:gap-2 backdrop-blur-2xl border shadow-2xl transition-colors duration-300 ${
+      isDark 
+        ? 'bg-zinc-950/85 border-zinc-800/90 shadow-black/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.09)] text-white' 
+        : 'bg-white/90 border-zinc-300 shadow-zinc-300/50 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] text-black'
+    }`}
+  >
+    <a href="#" className="flex items-center shrink-0 group pr-2 sm:pr-3 border-r border-dotted border-zinc-700/60 h-5 sm:h-6">
+      <span className="font-nothing text-xs sm:text-lg tracking-widest group-hover:text-[#ea0000] transition-colors duration-150">
+        TSK
+      </span>
+    </a>
+    
+    <div className={`flex items-center justify-between flex-1 min-w-0 px-0.5 sm:px-3 gap-0.5 sm:gap-1 text-[7px] sm:text-[9px] font-bold tracking-[0.06em] sm:tracking-[0.18em] uppercase ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
+      {NAV_ITEMS.map((item) => {
+        const isActive = activeSection === item.id;
+        return (
+          <a
+            key={item.id}
+            href={`#${item.id}`}
+            className={`relative px-1 sm:px-3 py-1 rounded-[2px] flex items-center gap-1 sm:gap-1.5 shrink-0 transition-colors duration-150 ${
+              isActive 
+                ? (isDark ? 'text-white' : 'text-black') 
+                : (isDark ? 'hover:text-zinc-200' : 'hover:text-zinc-900')
             }`}
           >
-            <a href="#" className="flex items-center shrink-0 group pr-2 sm:pr-3 border-r border-dotted border-zinc-700/60 h-5 sm:h-6">
-              <span className="font-nothing text-sm sm:text-lg tracking-widest group-hover:text-[#ea0000] transition-colors duration-150">
-                TSK
-              </span>
-            </a>
-            
-           <div className={`flex items-center justify-around sm:justify-between flex-1 px-1 sm:px-3 gap-0.5 sm:gap-1 text-[7.5px] sm:text-[9px] font-bold tracking-[0.08em] sm:tracking-[0.18em] uppercase ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
-  {NAV_ITEMS.map((item) => {
-    const isActive = activeSection === item.id;
-    return (
-      <a
-        key={item.id}
-        href={`#${item.id}`}
-        className={`relative px-1.5 sm:px-3 py-1 rounded-[2px] flex items-center gap-1.5 shrink-0 transition-colors duration-150 ${
-          isActive 
-            ? (isDark ? 'text-white' : 'text-black') 
-            : (isDark ? 'hover:text-zinc-200' : 'hover:text-zinc-900')
-        }`}
-      >
-        {isActive && (
-          <motion.span
-            layoutId="os5-lucent-dock"
-            transition={NOTHING_LAYOUT_SPRING}
-            className={`absolute inset-0 rounded-[2px] -z-10 border border-dotted ${
-              isDark 
-                ? 'bg-white/[0.07] border-zinc-600 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]' 
-                : 'bg-black/[0.05] border-zinc-400 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]'
-            }`}
-          />
-        )}
-        <span
-  style={{ backgroundColor: isActive ? item.dotColor : 'transparent' }}
-  className={`inline-block w-1.5 h-1.5 rounded-full shrink-0 transition-all duration-150 ${
-    isActive ? 'scale-100 opacity-100' : 'scale-0 opacity-0 w-0'
-  }`}
-/>
-        <span className="sm:hidden">{item.mobileLabel}</span>
-        <span className="hidden sm:inline">{item.label}</span>
-      </a>
-    );
-  })}
-</div>
-            
-            <button 
-              type="button"
-              onClick={() => setIsDark(prev => !prev)} 
-              aria-label="Toggle theme"
-              className={`relative shrink-0 w-10 sm:w-12 h-5.5 sm:h-6 rounded-[2px] border flex items-center transition-colors duration-200 cursor-pointer touch-manipulation overflow-hidden p-0.5 ${
-                isDark ? 'border-zinc-700 bg-black' : 'border-zinc-300 bg-zinc-100'
+            {isActive && (
+              <motion.span
+                layoutId="os5-lucent-dock"
+                transition={NOTHING_LAYOUT_SPRING}
+                className={`absolute inset-0 rounded-[2px] -z-10 border border-dotted ${
+                  isDark 
+                    ? 'bg-white/[0.07] border-zinc-600 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]' 
+                    : 'bg-black/[0.05] border-zinc-400 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]'
+                }`}
+              />
+            )}
+            <span
+              style={{ backgroundColor: isActive ? item.dotColor : 'transparent' }}
+              className={`inline-block w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full shrink-0 transition-all duration-150 ${
+                isActive ? 'scale-100 opacity-100' : 'scale-0 opacity-0 w-0'
               }`}
-            >
-              <div className="absolute inset-0 flex justify-between items-center px-1 sm:px-1.5 text-[6.5px] sm:text-[7px] font-mono tracking-wider font-bold pointer-events-none">
-                <span className={isDark ? 'text-zinc-600' : 'text-black'}>LT</span>
-                <span className={isDark ? 'text-zinc-300' : 'text-zinc-400'}>DK</span>
-              </div>
-              <motion.div 
-                layout 
-                initial={false} 
-                animate={{ x: isDark ? 18 : 0 }} 
-                transition={NOTHING_LAYOUT_SPRING} 
-                className={`w-4 sm:w-5 h-4 sm:h-4.5 rounded-[1px] relative z-10 flex items-center justify-center shadow-sm ${isDark ? 'bg-white' : 'bg-black'}`}
-              >
-                <div className={`w-[1.5px] h-2 ${isDark ? 'bg-black' : 'bg-white'}`} />
-              </motion.div>
-            </button>
-          </motion.nav>
-        </header>
+            />
+            <span className="sm:hidden">{item.mobileLabel}</span>
+            <span className="hidden sm:inline">{item.label}</span>
+          </a>
+        );
+      })}
+    </div>
+    
+   <button 
+  type="button"
+  onClick={() => setIsDark(prev => !prev)} 
+  aria-label="Toggle theme"
+  className={`relative shrink-0 w-9 sm:w-12 h-5 sm:h-6 rounded-[2px] border flex items-center transition-colors duration-200 cursor-pointer touch-manipulation overflow-hidden p-0.5 ${
+    isDark ? 'justify-end border-zinc-700 bg-black' : 'justify-start border-zinc-300 bg-zinc-100'
+  }`}
+>
+  <div className="absolute inset-0 flex justify-between items-center px-1 sm:px-1.5 text-[6px] sm:text-[7px] font-mono tracking-wider font-bold pointer-events-none">
+    <span className={isDark ? 'text-zinc-600' : 'text-black'}>LT</span>
+    <span className={isDark ? 'text-zinc-300' : 'text-zinc-400'}>DK</span>
+  </div>
+  <motion.div 
+    layout 
+    transition={NOTHING_LAYOUT_SPRING} 
+    className={`w-3.5 sm:w-5 h-3.5 sm:h-4 rounded-[1px] relative z-10 flex items-center justify-center shadow-sm ${isDark ? 'bg-white' : 'bg-black'}`}
+  >
+    <div className={`w-[1.5px] h-2 ${isDark ? 'bg-black' : 'bg-white'}`} />
+  </motion.div>
+</button>
+  </motion.nav>
+</header>
 
         {/* --- HERO SECTION --- */}
         <section className={`pt-24 sm:pt-32 pb-12 sm:pb-16 min-h-[82vh] sm:min-h-[85vh] flex flex-col justify-center border-b relative ${isDark ? 'border-zinc-800' : 'border-zinc-200'}`}>
